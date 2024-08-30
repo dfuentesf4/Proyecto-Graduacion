@@ -36,6 +36,17 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+		<UserSecretsId>f6d2b608-a283-4dbe-844f-2603d1d53936</UserSecretsId>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-ios|AnyCPU'">
+	  <MtouchUseLlvm>True</MtouchUseLlvm>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(TargetFramework)'=='net8.0-ios'">
+	  <ProvisioningType>automatic</ProvisioningType>
+	  <CodesignKey>Apple Development: Created via API (57967HXNVC)</CodesignKey>
+	  <CodesignProvision>VS: WildCard Development</CodesignProvision>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -57,9 +68,55 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="appsettings.json" />
+	  <None Remove="Resources\Images\logo.png" />
+	  <None Remove="Resources\Images\logout_icon.svg" />
+	  <None Remove="Resources\Images\settings_icon.svg" />
+	  <None Remove="Resources\Images\user_icon.svg" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="appsettings.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.80" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.80" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+		<PackageReference Include="Serilog" Version="4.0.1" />
+		<PackageReference Include="Serilog.Extensions.Hosting" Version="8.0.0" />
+		<PackageReference Include="Serilog.Sinks.Debug" Version="3.0.0" />
+		<PackageReference Include="Serilog.Sinks.File" Version="6.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Resources\Styles\MyColors.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\Styles\MyStyles.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Home\HomeView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Login\LoginView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Settings\SettingsView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Users\CreateView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Users\EditView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Users\ListView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>

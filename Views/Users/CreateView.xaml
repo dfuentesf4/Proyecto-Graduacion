@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HFPMapp.Views.Users.CreateView"
+             Style="{StaticResource ContentPageStyle}"
+             Title="Crear Usuario">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" >
+
+            <Label Text="Crear Usuario" 
+                   FontSize="24" 
+                   HorizontalOptions="Center" 
+                   VerticalOptions="Start" 
+                   Margin="0,10,0,20"/>
+
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Nombre:" Margin="15,0,0,0"/>
+                <Entry Placeholder="Nombre" 
+                       Text="{Binding Name}" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Apellido:" Margin="15,0,0,0"/>
+                <Entry Placeholder="Apellido" 
+                        Text="{Binding LastName}" />
+            </VerticalStackLayout>
+            
+
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Correo Electronico:" Margin="15,0,0,0"/>
+                <Entry Placeholder="Correo Electrónico" 
+                       Text="{Binding Email}" 
+                       Keyboard="Email" />          
+            </VerticalStackLayout>
+            
+
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Numero de Teléfono" Margin="15,0,0,0"/>
+                <Entry Placeholder="Número de Teléfono" 
+                       Text="{Binding PhoneNumber}" 
+                       Keyboard="Telephone" />
+            </VerticalStackLayout>
+            
+
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Posicion Laboral" Margin="15,0,0,0"/>
+                <Entry Placeholder="Posición Laboral" 
+                        Text="{Binding JobPosition}" />
+            </VerticalStackLayout>
+            
+
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Fecha Nacimiento" Margin="15,0,0,0"/>
+                <DatePicker Date="{Binding BirthDate}"
+                            Format="dd/MM/yyyy"
+                            MinimumDate="01/01/1900"
+                            MaximumDate="01/01/2100"/>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Genero:" Margin="15,0,0,0"/>
+                <Picker Title="Género" 
+                        SelectedItem="{Binding Gender}"
+                        Margin="15">
+                    <Picker.Items>
+                        <x:String>Masculino</x:String>
+                        <x:String>Femenino</x:String>
+                    </Picker.Items>
+                </Picker>
+            </VerticalStackLayout>
+            
+
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Nombre de Usurio:" Margin="15,0,0,0"/>
+                <Entry Placeholder="Nombre de Usuario" 
+                        Text="{Binding UserName}" />
+            </VerticalStackLayout>
+           
+
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Contraseña:" Margin="15,0,0,0"/>
+                <Entry Placeholder="Contraseña" 
+                       Text="{Binding Password}" 
+                       IsPassword="True" />     
+            </VerticalStackLayout>
+            
+
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Confirmar Contraseña:" Margin="15,0,0,0"/>
+                <Entry Placeholder="Confirmar Contraseña" 
+                       Text="{Binding Password2}" 
+                       IsPassword="True" /> 
+            </VerticalStackLayout>
+            
+
+            
+            <Label Text="Las contraseñas no coinciden"
+                   IsVisible="{Binding IsErrorPasswordVisible}"
+                   TextColor="Red"
+                   HorizontalOptions="Center"
+                   Margin="0,10,0,0"/>
+
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <Switch IsToggled="{Binding IsActive}" />
+                <Label Text="Activo" VerticalOptions="Center"/>
+            </HorizontalStackLayout>
+
+            <Label Text="{Binding ErrorMessage}"
+                     TextColor="Red"
+                     HorizontalOptions="Center"
+                     Margin="0,10,0,0"/>
+
+
+            <Button Text="Crear Usuario" 
+                    Command="{Binding CreateUserCommand}" 
+                    BackgroundColor="{StaticResource Primary}"
+                    TextColor="White"
+                    Margin="0,20,0,0" />
+
+            <ActivityIndicator IsRunning="{Binding IsBusy}" 
+                   IsVisible="{Binding IsBusy}" 
+                   Color="Blue" 
+                   VerticalOptions="Center" 
+                   HorizontalOptions="Center"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

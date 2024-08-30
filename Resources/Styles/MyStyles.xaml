@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Style TargetType="ContentPage" x:Key="ContentPageStyle">
+        <Setter Property="Shell.BackgroundColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Primary}}" />
+        <Setter Property="Shell.TitleColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource Black}}" />
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"/>
+    </Style>
+
+    <Style TargetType="Button">
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource LightFont}}"/>
+        <Setter Property="WidthRequest" Value="{x:OnPlatform WinUI=350, Android=250, iOS=250}"/>
+        <Setter Property="Margin" Value="{x:OnPlatform WinUI=15, Android=10, iOS=10}"/>
+        <Setter Property="BackgroundColor" Value="{StaticResource Primary}"/>
+    </Style>
+
+    <Style TargetType="Entry">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource LightFont}}"/>
+        <Setter Property="PlaceholderColor" Value="Gray"/>
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource DarkBackground}}"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="Margin" Value="{x:OnPlatform WinUI=15, Android=10, iOS=10}"/>
+        <Setter Property="WidthRequest" Value="{x:OnPlatform WinUI=350, Android=250, iOS=250}"/>
+    </Style>
+
+    <Style TargetType="DatePicker">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource LightFont}}"/>
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource DarkBackground}}"/>
+        <Setter Property="WidthRequest" Value="{x:OnPlatform WinUI=350, Android=250, iOS=250}"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="Margin" Value="{x:OnPlatform WinUI=15, Android=10, iOS=10}"/>
+    </Style>
+
+    <Style TargetType="Picker">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource LightFont}}"/>
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource LightPrimary}}"/>
+        <Setter Property="WidthRequest" Value="{x:OnPlatform WinUI=350, Android=250, iOS=250}"/>
+        <Setter Property="FontSize" Value="18"/>
+    </Style>
+
+    <Style TargetType="Label">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource LightFont}}"/>
+        <Setter Property="FontSize" Value="18"/>
+    </Style>
+
+    <Style TargetType="Frame">
+        <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"/>
+    </Style>
+
+    <Style TargetType="SearchBar">
+        <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"/>
+        <Setter Property="PlaceholderColor" Value="{AppThemeBinding Light=#5858585, Dark={StaticResource LightBackground}}"/>
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource LightFont}}"/>
+        <Setter Property="CancelButtonColor" Value="{StaticResource Primary}"/>
+    </Style>
+
+
+</ResourceDictionary>

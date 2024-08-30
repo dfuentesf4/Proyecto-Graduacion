@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HFPMapp.Views.Users.ListView"
+             Style="{StaticResource ContentPageStyle}"
+             Title="Usuarios">
+
+    <RefreshView IsRefreshing="{Binding IsRefreshing}"
+                 RefreshColor="Teal"
+                 Command="{Binding RefreshCommand}">
+        
+        <ScrollView>
+
+            <VerticalStackLayout>
+
+                <SearchBar Placeholder="Buscar"
+                           Text="{Binding SearchText}"
+                           SearchCommand="{Binding SearchCommand}"/>
+
+                <HorizontalStackLayout Margin="10">
+                    <Label Text="Ver Inactivos: " VerticalOptions="Center"/>
+                    <Switch IsToggled="{Binding SeeInactives}"
+                            VerticalOptions="Center" Margin="5,0,0,0"/>
+                    <Button Text="Crear"
+                            Margin="10,0,0,0"
+                            WidthRequest="{x:OnPlatform WinUI=350, Android=130, iOS=130}"
+                            VerticalOptions="Center"
+                            Command="{Binding CreateCommand}"/>
+
+                    <OnPlatform x:TypeArguments="View">
+                        <On Platform="WinUI">
+                            <HorizontalStackLayout>
+                                <Button Text="Actualizar"
+                                        Command="{Binding RefreshCommand}"/>
+                            </HorizontalStackLayout>
+                        </On>
+                    </OnPlatform>
+
+                </HorizontalStackLayout>
+
+
+                <CollectionView ItemsSource="{Binding Users}"
+                                    x:Name="listView">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <SwipeView>
+                                <SwipeView.LeftItems>
+                                    <SwipeItems>
+                                        <SwipeItem Text="Editar"
+                                                       BackgroundColor="{StaticResource Primary}"
+                                                       Command="{Binding Source={x:Reference listView}, Path=BindingContext.EditCommand}"
+                                                       CommandParameter="{Binding}"/>
+                                    </SwipeItems>
+                                </SwipeView.LeftItems>
+                                <SwipeView.RightItems>
+                                    <SwipeItems>
+                                        <SwipeItem Text="Eliminar"
+                                                       BackgroundColor="Red"
+                                                       Command="{Binding Source={x:Reference listView}, Path=BindingContext.DeleteCommand}"
+                                                       CommandParameter="{Binding}"/>
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
+                                <Border Stroke="Gray"
+                                            StrokeThickness="1"
+                                            Margin="2">
+                                    <VerticalStackLayout Background="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"
+                                                             Padding="5">
+                                        <HorizontalStackLayout>
+                                            <Label Text="Nombre:"/>
+                                            <Label Text="{Binding FirstName}" Margin="5,0,0,0"/>
+                                            <Label Text="{Binding LastName}" Margin="5,0,0,0"/>
+                                        </HorizontalStackLayout>
+
+                                        <HorizontalStackLayout>
+                                            <Label Text="Correo :"/>
+                                            <Label Text="{Binding Email}" Margin="5,0,0,0"/>
+                                        </HorizontalStackLayout>
+
+                                        <HorizontalStackLayout>
+                                            <Label Text="Telefono:"/>
+                                            <Label Text="{Binding PhoneNumber}" Margin="5,0,0,0"/>
+                                        </HorizontalStackLayout>
+
+                                        <HorizontalStackLayout>
+                                            <Label Text="Cargo:"/>
+                                            <Label Text="{Binding JobPosition}" Margin="5,0,0,0"/>
+                                        </HorizontalStackLayout>
+
+                                        <HorizontalStackLayout>
+                                            <Label Text="Nacimiento:"/>
+                                            <Label Text="{Binding BirthDate}" Margin="5,0,0,0"/>
+                                        </HorizontalStackLayout>
+
+                                        <HorizontalStackLayout>
+                                            <Label Text="Genero:"/>
+                                            <Label Text="{Binding Gender}" Margin="5,0,0,0"/>
+                                        </HorizontalStackLayout>
+
+                                        <HorizontalStackLayout>
+                                            <Label Text="Usuaio:"/>
+                                            <Label Text="{Binding UserName}" Margin="5,0,0,0"/>
+                                        </HorizontalStackLayout>
+
+
+                                        <OnPlatform x:TypeArguments="View">
+                                            <On Platform="WinUI">
+                                                <HorizontalStackLayout>
+                                                    <Button Text="Editar"
+                                                            Command="{Binding Source={x:Reference listView}, Path=BindingContext.EditCommand}"
+                                                            CommandParameter="{Binding}" />
+                                                    <Button Text="Eliminar"
+                                                            Command="{Binding Source={x:Reference listView}, Path=BindingContext.DeleteCommand}"
+                                                            CommandParameter="{Binding}" />
+                                                </HorizontalStackLayout>
+                                            </On>
+                                        </OnPlatform>
+                                    </VerticalStackLayout>
+                                </Border>
+                            </SwipeView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </ScrollView>
+    </RefreshView>
+</ContentPage>

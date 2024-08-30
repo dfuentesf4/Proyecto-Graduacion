@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HFPMapp.Views.Home.HomeView"
+             Title="Home"
+             Style="{StaticResource ContentPageStyle}">
+    <ContentPage.Content>
+        <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
+
+            <!-- Logo de la aplicación -->
+            <Image Source="logo.png" WidthRequest="150" HeightRequest="150" />
+
+            <!-- Texto de bienvenida -->
+            <Label Text="Bienvenido a la aplicación" 
+                   FontSize="24" 
+                   HorizontalOptions="Center"
+                   Margin="20"/>
+
+            <!-- Nombre del usuario -->
+            <Label Text="{Binding UserName}" 
+                   FontSize="20" 
+                   HorizontalOptions="Center"
+                   TextColor="Black" 
+                   Margin="10" />
+
+            <!-- Botón para continuar -->
+            <Button Text="Continuar" 
+                    Command="{Binding ContinueCommand}"
+                    BackgroundColor="{StaticResource Primary}"
+                    TextColor="White"
+                    WidthRequest="200"
+                    Margin="20"/>
+        </VerticalStackLayout>
+    </ContentPage.Content>
+</ContentPage>

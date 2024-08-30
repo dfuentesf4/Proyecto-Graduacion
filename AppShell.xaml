@@ -4,12 +4,47 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:HFPMapp"
+    xmlns:loginViews="clr-namespace:HFPMapp.Views.Login"
+    xmlns:homeViews="clr-namespace:HFPMapp.Views.Home"
+    xmlns:userViews="clr-namespace:HFPMapp.Views.Users"
+    xmlns:settingsViews="clr-namespace:HFPMapp.Views.Settings"
     Shell.FlyoutBehavior="Disabled"
     Title="HFPMapp">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    
 
+    <FlyoutItem Title="Home">
+        <ShellContent Route="Home" ContentTemplate="{DataTemplate homeViews:HomeView}" />
+    </FlyoutItem>
+
+
+
+    <FlyoutItem Title="Usuarios" FlyoutIcon="user_icon.png">
+        
+        <ShellContent Title="Listar"
+                        Route="ListUser" 
+                        ContentTemplate="{DataTemplate userViews:ListView}" />
+        
+    </FlyoutItem>
+
+    <FlyoutItem Title="Configuraciones" FlyoutIcon="settings_icon.png">
+        <ShellContent Route="Settings" ContentTemplate="{DataTemplate settingsViews:SettingsView}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Donadores">
+
+    </FlyoutItem>
+
+    <FlyoutItem Title="Proyectos">
+        
+    </FlyoutItem>
+
+    <FlyoutItem Title="Contabilidad">
+
+    </FlyoutItem>
+
+    <FlyoutItem Title="Log Out" FlyoutIcon="logout_icon.png">
+        <ShellContent ContentTemplate="{DataTemplate loginViews:LoginView}"
+                      Route="Login" />
+    </FlyoutItem>
 </Shell>

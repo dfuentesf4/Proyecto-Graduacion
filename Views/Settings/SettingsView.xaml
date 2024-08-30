@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HFPMapp.Views.Settings.SettingsView"
+             Style="{StaticResource ContentPageStyle}"
+             Title="SettingsView">
+    <VerticalStackLayout>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Column="0" Grid.Row="0"
+           Text="Tema de la aplicacion: "
+           VerticalOptions="Center"/>
+
+            <VerticalStackLayout Grid.Column="1" Grid.Row="0">
+
+                <RadioButton GroupName="Theme"
+                     VerticalOptions="Center"
+                     HorizontalOptions="Start"
+                     Content="Mismo que el Sistema Operativo"
+                     IsChecked="{Binding IsSystemThemeCheked}"/>
+
+                <RadioButton GroupName="Theme"
+                     VerticalOptions="Center"
+                     HorizontalOptions="Start"
+                     Content="Claro"
+                     IsChecked="{Binding IsLigthThemeCheked}"/>
+
+                <RadioButton GroupName="Theme"
+                     VerticalOptions="Center"
+                     HorizontalOptions="Start"
+                     Content="Oscuro"
+                     IsChecked="{Binding IsDarkThemeCheked}"/>
+            </VerticalStackLayout>
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>
