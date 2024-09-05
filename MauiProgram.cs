@@ -68,6 +68,12 @@ namespace HFPMapp
 
             //Services http client
             services.AddSingleton<UserApiClient>();
+            services.AddSingleton<DonorApiClient>();
+            services.AddSingleton<ProjectApiClient>();
+            services.AddSingleton<BeneficiaryApiClient>();
+            services.AddSingleton<VolunteerApiClient>();
+            services.AddSingleton<ReportApiClient>();
+            services.AddSingleton<ActivityApiClient>();
 
             //Services required for Login
             services.AddSingleton<LoginViewModel>();
@@ -84,6 +90,57 @@ namespace HFPMapp
             services.AddSingleton<Views.Users.ListView>();
             services.AddSingleton<EditViewModel>();
             services.AddSingleton<EditView>();
+
+            //Services required for Donors
+            services.AddSingleton<HFPMapp.ViewModels.Donors.CreateViewModel>();
+            services.AddSingleton<HFPMapp.Views.Donors.CreateView>();
+            services.AddSingleton<HFPMapp.ViewModels.Donors.ListViewModel>();
+            services.AddSingleton<HFPMapp.Views.Donors.ListView>();
+            services.AddSingleton<HFPMapp.ViewModels.Donors.EditViewModel>();
+            services.AddSingleton<HFPMapp.Views.Donors.EditView>();
+
+            //Services required for Projects
+            services.AddSingleton<HFPMapp.ViewModels.Projects.MenuViewModel>();
+            services.AddSingleton<HFPMapp.Views.Projects.MenuView>();
+            services.AddSingleton<HFPMapp.ViewModels.Projects.ProjectsCreateViewModel>();
+            services.AddSingleton<HFPMapp.Views.Projects.ProyectsCreateView>();
+            services.AddSingleton<HFPMapp.ViewModels.Projects.ProjectsListViewModel>();
+            services.AddSingleton<HFPMapp.Views.Projects.ProjectsListView>();
+            services.AddSingleton<HFPMapp.ViewModels.Projects.ProjectEditViewModel>();
+            services.AddSingleton<HFPMapp.Views.Projects.ProjectEditView>();
+
+            //Services required for beneficiaries
+            services.AddSingleton<HFPMapp.ViewModels.Projects.Beneficiaries.CreateViewModel>();
+            services.AddSingleton<HFPMapp.Views.Projects.Beneficiaries.CreateView>();
+            services.AddSingleton<HFPMapp.ViewModels.Projects.Beneficiaries.ListViewModel>();
+            services.AddSingleton<HFPMapp.Views.Projects.Beneficiaries.ListView>();
+            services.AddSingleton<HFPMapp.ViewModels.Projects.Beneficiaries.EditViewModel>();
+            services.AddSingleton<HFPMapp.Views.Projects.Beneficiaries.EditView>();
+
+            //Services required for Volunteers
+            services.AddSingleton<HFPMapp.ViewModels.Projects.Volunteers.CreateViewModel>();
+            services.AddSingleton<HFPMapp.Views.Projects.Volunteers.CreateView>();
+            services.AddSingleton<HFPMapp.ViewModels.Projects.Volunteers.ListViewModel>();
+            services.AddSingleton<HFPMapp.Views.Projects.Volunteers.ListView>();
+            services.AddSingleton<HFPMapp.ViewModels.Projects.Volunteers.EditViewModel>();
+            services.AddSingleton<HFPMapp.Views.Projects.Volunteers.EditView>();
+
+            //Services required for Reports
+            services.AddSingleton<HFPMapp.ViewModels.Projects.Reports.CreateViewModel>();
+            services.AddSingleton<HFPMapp.Views.Projects.Reports.CreateView>();
+            services.AddSingleton<HFPMapp.ViewModels.Projects.Reports.ListViewModel>();
+            services.AddSingleton<HFPMapp.Views.Projects.Reports.ListView>();
+            services.AddSingleton<HFPMapp.ViewModels.Projects.Reports.EditViewModel>();
+            services.AddSingleton<HFPMapp.Views.Projects.Reports.EditView>();
+
+            //Services required for Activities
+            services.AddSingleton<HFPMapp.ViewModels.Projects.Activities.CreateViewModel>();
+            services.AddSingleton<HFPMapp.Views.Projects.Activities.CreateView>();
+            services.AddSingleton<HFPMapp.ViewModels.Projects.Activities.ListViewModel>();
+            services.AddSingleton<HFPMapp.Views.Projects.Activities.ListView>();
+            services.AddSingleton<HFPMapp.ViewModels.Projects.Activities.EditViewModel>();
+            services.AddSingleton<HFPMapp.Views.Projects.Activities.EditView>();
+
 
             return services;
         }

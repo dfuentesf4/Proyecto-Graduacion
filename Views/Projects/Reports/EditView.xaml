@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:HFPMapp.Services.Converters"
+             x:Class="HFPMapp.Views.Projects.Reports.EditView"
+             Style="{StaticResource ContentPageStyle}"
+             Title="Editar Reporte">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!-- Registro del convertidor -->
+            <converters:DateOnlyToDateTimeConverter x:Key="DateOnlyToDateTimeConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ScrollView>
+        <VerticalStackLayout Padding="20">
+
+            <Label Text="Editar Reporte" 
+               FontSize="24" 
+               HorizontalOptions="Center" 
+               VerticalOptions="Start" 
+               Margin="0,10,0,20"/>
+
+            <!-- Campo para la Fecha -->
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Fecha:" Margin="15,0,0,0"/>
+                <DatePicker Date="{Binding Report.Date, Converter={StaticResource DateOnlyToDateTimeConverter}}" 
+                            Format="dd/MM/yyyy" 
+                            MinimumDate="01/01/1900" 
+                            MaximumDate="01/01/2200" />
+            </VerticalStackLayout>
+
+            <!-- Campo para la Descripción -->
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Descripción:" Margin="15,0,0,0"/>
+                <Editor Placeholder="Descripción del Reporte" 
+                    Text="{Binding Report.Description}" />
+            </VerticalStackLayout>
+
+            <!-- Campo para los Resultados -->
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Resultados:" Margin="15,0,0,0"/>
+                <Editor Placeholder="Resultados del Reporte" 
+                    Text="{Binding Report.Results}" />
+            </VerticalStackLayout>
+
+            <!-- Campo para las Recomendaciones -->
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Recomendaciones:" Margin="15,0,0,0"/>
+                <Editor Placeholder="Recomendaciones del Reporte" 
+                    Text="{Binding Report.Recommendations}" />
+            </VerticalStackLayout>
+
+            <!-- Campo para seleccionar el Proyecto -->
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Proyecto:" Margin="15,0,0,0"/>
+                <Picker Title="Seleccionar Proyecto" 
+                    SelectedItem="{Binding SelectedProject}"
+                    ItemsSource="{Binding Projects}" 
+                    ItemDisplayBinding="{Binding Name}"
+                    Margin="15"/>
+            </VerticalStackLayout>
+
+            <!-- Campo para el estado Activo -->
+            <HorizontalStackLayout HorizontalOptions="Center" Margin="15,0,0,0">
+                <Label Text="Activo:" VerticalOptions="Center" Margin="0,0,15,0"/>
+                <Switch IsToggled="{Binding Report.IsActive}" />
+            </HorizontalStackLayout>
+
+            <!-- Mensaje de error -->
+            <Label Text="{Binding ErrorMessage}"
+               TextColor="Red"
+               HorizontalOptions="Center"
+               Margin="0,10,0,0"/>
+
+            <!-- Botón para editar el Reporte -->
+            <Button Text="Editar Reporte" 
+                Command="{Binding EditCommand}" 
+                BackgroundColor="{StaticResource Primary}"
+                TextColor="White"
+                Margin="0,20,0,0" />
+
+            <!-- Indicador de actividad -->
+            <ActivityIndicator IsRunning="{Binding IsBusy}" 
+                           IsVisible="{Binding IsBusy}" 
+                           Color="Blue" 
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HFPMapp.Views.Projects.MenuView"
+             Style="{StaticResource ContentPageStyle}"
+             Title="MenuView">
+    <VerticalStackLayout>
+        <Button Text="Proyectos" Command="{Binding ProjectsCommand}"/>
+        <Button Text="Beneficiarios" Command="{Binding BeneficiariesCommand}"/>
+        <Button Text="Voluntarios" Command="{Binding VolunteersCommand}"/>
+        <Button Text="Reportes" Command="{Binding ReportsCommand}"/>
+        <Button Text="Actividades" Command="{Binding ActivitiesCommand}"/>
+    </VerticalStackLayout>
+</ContentPage>

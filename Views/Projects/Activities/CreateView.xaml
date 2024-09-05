@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:HFPMapp.Services.Converters"
+             x:Class="HFPMapp.Views.Projects.Activities.CreateView"
+             Style="{StaticResource ContentPageStyle}"
+             Title="Actividades">
+
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!-- Registro del convertidor -->
+            <converters:DateOnlyToDateTimeConverter x:Key="DateOnlyToDateTimeConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20">
+
+            <Label Text="Crear Actividad" 
+                   FontSize="24" 
+                   HorizontalOptions="Center" 
+                   VerticalOptions="Start" 
+                   Margin="0,10,0,20"/>
+
+            <!-- Campo para el Nombre de la Actividad -->
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Nombre:" Margin="15,0,0,0"/>
+                <Entry Placeholder="Nombre de la Actividad" 
+                       Text="{Binding Activity.Name}" />
+            </VerticalStackLayout>
+
+            <!-- Campo para la Descripción -->
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Descripción:" Margin="15,0,0,0"/>
+                <Editor Placeholder="Descripción de la Actividad" 
+                        Text="{Binding Activity.Description}" 
+                        AutoSize="TextChanges"/>
+            </VerticalStackLayout>
+
+            <!-- Campo para la Fecha de Inicio -->
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Fecha de Inicio:" Margin="15,0,0,0"/>
+                <DatePicker Date="{Binding Activity.StartDate, Converter={StaticResource DateOnlyToDateTimeConverter}}" 
+                            Format="dd/MM/yyyy" 
+                            MinimumDate="01/01/2000" 
+                            MaximumDate="01/12/2100" />
+            </VerticalStackLayout>
+
+            <!-- Campo para la Fecha de Fin -->
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Fecha de Fin:" Margin="15,0,0,0"/>
+                <DatePicker Date="{Binding Activity.EndDate, Converter={StaticResource DateOnlyToDateTimeConverter}}" 
+                            Format="dd/MM/yyyy" 
+                            MinimumDate="01/01/2000" 
+                            MaximumDate="01/12/2100" />
+            </VerticalStackLayout>
+
+            <!-- Campo para seleccionar el Proyecto -->
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Proyecto:" Margin="15,0,0,0"/>
+                <Picker Title="Seleccionar Proyecto" 
+                        SelectedItem="{Binding SelectedProject}"
+                        ItemsSource="{Binding Projects}" 
+                        ItemDisplayBinding="{Binding Name}"
+                        Margin="15"/>
+            </VerticalStackLayout>
+
+            <!-- Campo para el estado Activo -->
+            <HorizontalStackLayout HorizontalOptions="Center" Margin="15,0,0,0">
+                <Label Text="Activo:" VerticalOptions="Center" Margin="0,0,15,0"/>
+                <Switch IsToggled="{Binding Activity.IsActive}" />
+            </HorizontalStackLayout>
+
+            <!-- Mensaje de error -->
+            <Label Text="{Binding ErrorMessage}"
+                   TextColor="Red"
+                   HorizontalOptions="Center"
+                   Margin="0,10,0,0"/>
+
+            <!-- Botón para crear la Actividad -->
+            <Button Text="Crear Actividad" 
+                    Command="{Binding CreateCommand}" 
+                    BackgroundColor="{StaticResource Primary}"
+                    TextColor="White"
+                    Margin="0,20,0,0" />
+
+            <!-- Indicador de actividad -->
+            <ActivityIndicator IsRunning="{Binding IsBusy}" 
+                               IsVisible="{Binding IsBusy}" 
+                               Color="Blue" 
+                               VerticalOptions="Center" 
+                               HorizontalOptions="Center"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

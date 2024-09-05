@@ -7,13 +7,15 @@
     xmlns:loginViews="clr-namespace:HFPMapp.Views.Login"
     xmlns:homeViews="clr-namespace:HFPMapp.Views.Home"
     xmlns:userViews="clr-namespace:HFPMapp.Views.Users"
+    xmlns:donorViews="clr-namespace:HFPMapp.Views.Donors"
+    xmlns:projectsViews="clr-namespace:HFPMapp.Views.Projects"
     xmlns:settingsViews="clr-namespace:HFPMapp.Views.Settings"
     Shell.FlyoutBehavior="Disabled"
     Title="HFPMapp">
 
     
 
-    <FlyoutItem Title="Home">
+    <FlyoutItem Title="Home" FlyoutIcon="home_icon.png">
         <ShellContent Route="Home" ContentTemplate="{DataTemplate homeViews:HomeView}" />
     </FlyoutItem>
 
@@ -27,16 +29,18 @@
         
     </FlyoutItem>
 
+
+
+    <FlyoutItem Title="Donadores" FlyoutIcon="user_icon.png">
+        <ShellContent Route="ListDonor" ContentTemplate="{DataTemplate donorViews:ListView}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Proyectos" FlyoutIcon="project_icon.png">
+        <ShellContent Route="Projects" ContentTemplate="{DataTemplate projectsViews:MenuView}"/>
+    </FlyoutItem>
+
     <FlyoutItem Title="Configuraciones" FlyoutIcon="settings_icon.png">
         <ShellContent Route="Settings" ContentTemplate="{DataTemplate settingsViews:SettingsView}" />
-    </FlyoutItem>
-
-    <FlyoutItem Title="Donadores">
-
-    </FlyoutItem>
-
-    <FlyoutItem Title="Proyectos">
-        
     </FlyoutItem>
 
     <FlyoutItem Title="Contabilidad">

@@ -57,5 +57,11 @@
         <Setter Property="CancelButtonColor" Value="{StaticResource Primary}"/>
     </Style>
 
+    <Style TargetType="Editor">
+        <Setter Property="WidthRequest" Value="{x:OnPlatform WinUI=350, Android=250, iOS=250}"/>
+        <Setter Property="HeightRequest" Value="{x:OnPlatform WinUI=175, Android=100, iOS=100}"/>
+        <Setter Property="Margin" Value="{x:OnPlatform WinUI=15, Android=10, iOS=10}"/>
+    </Style>
+
 
 </ResourceDictionary>

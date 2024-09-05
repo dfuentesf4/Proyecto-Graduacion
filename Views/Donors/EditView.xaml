@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:HFPMapp.Services.Converters"
+             x:Class="HFPMapp.Views.Donors.EditView"
+             Style="{StaticResource ContentPageStyle}"
+             Title="Editar">
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!-- Registro del convertidor -->
+            <converters:DateOnlyToDateTimeConverter x:Key="DateOnlyToDateTimeConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" >
+
+            <Label Text="Editar Donador" 
+               FontSize="24" 
+               HorizontalOptions="Center" 
+               VerticalOptions="Start" 
+               Margin="0,10,0,20"/>
+
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Nombre:" Margin="15,0,0,0"/>
+                <Entry Placeholder="Nombre" 
+                        Text="{Binding Donor.FirstName}" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Apellido:" Margin="15,0,0,0"/>
+                <Entry Placeholder="Apellido" 
+                        Text="{Binding Donor.LastName}" />
+            </VerticalStackLayout>
+
+
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Correo Electronico:" Margin="15,0,0,0"/>
+                <Entry Placeholder="Correo Electrónico" 
+                       Text="{Binding Donor.Email}" 
+                       Keyboard="Email" />
+            </VerticalStackLayout>
+
+
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Numero de Teléfono:" Margin="15,0,0,0"/>
+                <Entry Placeholder="Número de Teléfono" 
+                       Text="{Binding Donor.PhoneNumber}" 
+                       Keyboard="Telephone" />      
+            </VerticalStackLayout>
+
+
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Direccion:" Margin="15,0,0,0"/>
+                <Entry Placeholder="Direccion" 
+                        Text="{Binding Donor.Address}" />
+            </VerticalStackLayout>
+
+
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Fecha Nacimiento" Margin="15,0,0,0"/>
+                <DatePicker Date="{Binding Donor.BirthDate, Converter={StaticResource DateOnlyToDateTimeConverter}}"
+                            Format="dd/MM/yyyy"
+                            MinimumDate="01/01/1900"
+                            MaximumDate="01/01/2100"/>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Genero:" Margin="15,0,0,0"/>
+                <Picker Title="Género" 
+                        SelectedItem="{Binding Donor.Gender}"
+                        Margin="15">
+                    <Picker.Items>
+                        <x:String>Masculino</x:String>
+                        <x:String>Femenino</x:String>
+                    </Picker.Items>
+                </Picker>
+            </VerticalStackLayout>
+
+
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Observaciones:" Margin="15,0,0,0"/>
+                <Editor Placeholder="Observaciones"
+                        Text="{Binding Donor.Observations}"/>
+            </VerticalStackLayout>
+
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <Label Text="Activo" VerticalOptions="Center" Margin="0,0,15,0"/>
+                <Switch IsToggled="{Binding Donor.IsActive}" />
+            </HorizontalStackLayout>
+
+            <Label Text="{Binding ErrorMessage}"
+                    TextColor="Red"
+                    HorizontalOptions="Center"
+                    Margin="0,10,0,0"/>
+
+
+            <Button Text="Editar Donante" 
+                    Command="{Binding EditCommand}" 
+                    BackgroundColor="{StaticResource Primary}"
+                    TextColor="White"
+                    Margin="0,20,0,0" />
+
+            <ActivityIndicator IsRunning="{Binding IsBusy}" 
+                               IsVisible="{Binding IsBusy}" 
+                               Color="Blue" 
+                               VerticalOptions="Center" 
+                               HorizontalOptions="Center"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
