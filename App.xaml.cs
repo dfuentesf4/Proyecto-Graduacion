@@ -11,7 +11,7 @@
 
         protected override async void OnStart()
         {
-            await Shell.Current.GoToAsync("//Projects");
+            await Shell.Current.GoToAsync("//Accounting");
             Shell.Current.FlyoutBehavior = FlyoutBehavior.Flyout;
             base.OnStart();
 

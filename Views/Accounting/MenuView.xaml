@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HFPMapp.Views.Accounting.MenuView"
+             Style="{StaticResource ContentPageStyle}"
+             Title="Contabilidad">
+    <VerticalStackLayout>
+        <Button Text="Gastos" Command="{Binding ExpensesDetailCommand}" />
+        <Button Text="Ingresos" Command="{Binding RevenuesDetailCommand}" />
+        <Button Text="Resumenes" Command="{Binding SummaryCommand}" />
+        <Button Text="Caja Chica" Command="{Binding PettyCashSummaryCommand}" />
+        <Button Text="Transferencias de US" Command="{Binding TransfersFromUS}" />
+        <Button Text="Resumen de transferencias" Command="{Binding TransfersSummaryCommand}" />
+        <Button Text="Bancos" Command="{Binding BankCommand}" />
+        <Button Text="Folder de Banco" Command="{Binding FolderBankCommand}" />
+        <Button Text="Resumen Bancario" Command="{Binding BankSummaryCommand}" />
+        <Button Text="Libros Bancarios" Command="{Binding BankBookCommand}" />
+    </VerticalStackLayout>
+</ContentPage>

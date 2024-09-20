@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:HFPMapp.Services.Converters;assembly=HFPMapp"
+             x:Class="HFPMapp.Views.Accounting.FolderBank.CreateView"
+             Style="{StaticResource ContentPageStyle}"
+             Title="Crear Folder Banco">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:DecimalConverter x:Key="DecimalConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20">
+
+            <Label Text="Crear FolderBank" 
+                   FontSize="24" 
+                   HorizontalOptions="Center" 
+                   VerticalOptions="Start" 
+                   Margin="0,10,0,20"/>
+
+            <!-- Campo para el Año -->
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Año:" Margin="15,0,0,0"/>
+                <Entry Placeholder="Año" 
+                       Keyboard="Numeric"
+                       Text="{Binding FolderBank.Year}" />
+            </VerticalStackLayout>
+
+            <!-- Campo para el Mes -->
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Mes:" Margin="15,0,0,0"/>
+                <Picker Title="Seleccionar Mes" 
+                        SelectedItem="{Binding SelectedMonth}"
+                        ItemsSource="{Binding Months}"
+                        ItemDisplayBinding="{Binding .}"
+                        Margin="15"/>
+            </VerticalStackLayout>
+
+            <!-- Campo para el Tipo de Cambio -->
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Tipo de Cambio (Dólar):" Margin="15,0,0,0"/>
+                <Entry Placeholder="Tipo de Cambio" 
+                       Keyboard="Numeric"
+                       Text="{Binding FolderBank.DollarExchange, Converter={StaticResource DecimalConverter}, Mode=TwoWay}" />
+            </VerticalStackLayout>
+
+            <!-- Campo para el Monto -->
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Monto:" Margin="15,0,0,0"/>
+                <Entry Placeholder="Monto" 
+                       Keyboard="Numeric"
+                       Text="{Binding FolderBank.Amount, Converter={StaticResource DecimalConverter}, Mode=TwoWay}" />
+            </VerticalStackLayout>
+
+            <!-- Campo para seleccionar el Banco -->
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Banco:" Margin="15,0,0,0"/>
+                <Picker Title="Seleccionar Banco" 
+                        SelectedItem="{Binding SelectedBank}"
+                        ItemsSource="{Binding Banks}"
+                        ItemDisplayBinding="{Binding Name}"
+                        Margin="15"/>
+            </VerticalStackLayout>
+
+            <!-- Campo para el Transaction ID -->
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="ID de Transacción:" Margin="15,0,0,0"/>
+                <Entry Placeholder="ID de Transacción" 
+                       Text="{Binding FolderBank.TransactionId}" />
+            </VerticalStackLayout>
+
+            <!-- Campo para la Carpeta -->
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Carpeta:" Margin="15,0,0,0"/>
+                <Entry Placeholder="Carpeta" 
+                       Text="{Binding FolderBank.Folder}" />
+            </VerticalStackLayout>
+
+            <!-- Campo para el estado Activo -->
+            <HorizontalStackLayout HorizontalOptions="Center" Margin="15,0,0,0">
+                <Label Text="Activo:" VerticalOptions="Center" Margin="0,0,15,0"/>
+                <Switch IsToggled="{Binding FolderBank.IsActive}" />
+            </HorizontalStackLayout>
+
+            <!-- Mensaje de error -->
+            <Label Text="{Binding ErrorMessage}"
+                   TextColor="Red"
+                   HorizontalOptions="Center"
+                   Margin="0,10,0,0"/>
+
+            <!-- Botón para crear FolderBank -->
+            <Button Text="Crear FolderBank" 
+                    Command="{Binding CreateCommand}" 
+                    BackgroundColor="{StaticResource Primary}"
+                    TextColor="White"
+                    Margin="0,20,0,0" />
+
+            <!-- Indicador de actividad -->
+            <ActivityIndicator IsRunning="{Binding IsBusy}" 
+                               IsVisible="{Binding IsBusy}" 
+                               Color="Blue" 
+                               VerticalOptions="Center" 
+                               HorizontalOptions="Center"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

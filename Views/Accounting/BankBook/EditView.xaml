@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:HFPMapp.Services.Converters"
+             x:Class="HFPMapp.Views.Accounting.BankBook.EditView"
+             Style="{StaticResource ContentPageStyle}"
+             Title="Editar Libro Bancario">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:DecimalConverter x:Key="DecimalConverter" />
+            <converters:DateOnlyToDateTimeConverter x:Key="DateOnlyToDateTimeConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20">
+
+            <Label Text="Editar Libro Bancario"
+                   FontSize="24"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Start"
+                   Margin="0,10,0,20"/>
+
+            <!-- Campo para la Fecha -->
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Fecha:" Margin="15,0,0,0"/>
+                <DatePicker MinimumDate="01/01/1900"
+                            MaximumDate="01/01/2100"
+                       Format="dd/MM/yyyy"
+                       Date="{Binding BankBook.Date, Converter={StaticResource DateOnlyToDateTimeConverter}}" />
+            </VerticalStackLayout>
+
+            <!-- Campo para el Banco -->
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Banco:" Margin="15,0,0,0"/>
+                <Picker Title="Seleccionar Banco" 
+                        SelectedItem="{Binding SelectedBank}"
+                        ItemsSource="{Binding Banks}"
+                        ItemDisplayBinding="{Binding Name}"
+                        Margin="15"/>
+            </VerticalStackLayout>
+
+            <!-- Campo para el Monto -->
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Monto:" Margin="15,0,0,0"/>
+                <Entry Placeholder="Monto"
+                       Keyboard="Numeric"
+                       Text="{Binding BankBook.Amount, Converter={StaticResource DecimalConverter}, Mode=TwoWay}" />
+            </VerticalStackLayout>
+
+            <!-- Campo para el Tipo de Cambio -->
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Tipo de Cambio (Dólar):" Margin="15,0,0,0"/>
+                <Entry Placeholder="Tipo de Cambio"
+                       Keyboard="Numeric"
+                       Text="{Binding BankBook.DollarExchange, Converter={StaticResource DecimalConverter}, Mode=TwoWay}" />
+            </VerticalStackLayout>
+
+            <!-- Campo para el Número de Nómina -->
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Número de Nómina:" Margin="15,0,0,0"/>
+                <Entry Placeholder="Número de Nómina"
+                       Text="{Binding BankBook.PayrollNumber}" />
+            </VerticalStackLayout>
+
+            <!-- Campo para el Beneficiario -->
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Beneficiario:" Margin="15,0,0,0"/>
+                <Entry Placeholder="Beneficiario"
+                       Text="{Binding BankBook.Beneficiarie}" />
+            </VerticalStackLayout>
+
+            <!-- Campo para los Gastos -->
+            <HorizontalStackLayout HorizontalOptions="Center" Margin="15,0,0,0">
+                <Label Text="Es Gasto:" VerticalOptions="Center" Margin="0,0,15,0"/>
+                <Switch IsToggled="{Binding BankBook.Expenses}" />
+            </HorizontalStackLayout>
+
+            <!-- Campo para la Justificación -->
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Justificación:" Margin="15,0,0,0"/>
+                <Entry Placeholder="Justificación"
+                       Text="{Binding BankBook.Justification}" />
+            </VerticalStackLayout>
+
+            <!-- Campo para la Descripción -->
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Descripción:" Margin="15,0,0,0"/>
+                <Entry Placeholder="Descripción"
+                       Text="{Binding BankBook.Description}" />
+            </VerticalStackLayout>
+
+            <!-- Campo para el estado Activo -->
+            <HorizontalStackLayout HorizontalOptions="Center" Margin="15,0,0,0">
+                <Label Text="Activo:" VerticalOptions="Center" Margin="0,0,15,0"/>
+                <Switch IsToggled="{Binding BankBook.IsActive}" />
+            </HorizontalStackLayout>
+
+            <!-- Mensaje de error -->
+            <Label Text="{Binding ErrorMessage}"
+                   TextColor="Red"
+                   HorizontalOptions="Center"
+                   Margin="0,10,0,0"/>
+
+            <!-- Botón para Editar el Libro Bancario -->
+            <Button Text="Editar Libro Bancario"
+                    Command="{Binding EditCommand}"
+                    BackgroundColor="{StaticResource Primary}"
+                    TextColor="White"
+                    Margin="0,20,0,0" />
+
+            <!-- Indicador de actividad -->
+            <ActivityIndicator IsRunning="{Binding IsBusy}"
+                               IsVisible="{Binding IsBusy}"
+                               Color="Blue"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

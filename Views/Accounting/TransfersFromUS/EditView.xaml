@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:HFPMapp.Services.Converters"
+             x:Class="HFPMapp.Views.Accounting.TransfersFromUS.EditView"
+             Style="{StaticResource ContentPageStyle}"
+             Title="Editar Transferencia">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:DecimalConverter x:Key="DecimalConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20">
+
+            <Label Text="Editar Transferencia" 
+                   FontSize="24" 
+                   HorizontalOptions="Center" 
+                   VerticalOptions="Start" 
+                   Margin="0,10,0,20"/>
+
+            <!-- Campo para la Fecha -->
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Fecha:" Margin="15,0,0,0"/>
+                <DatePicker Date="{Binding TransfersFromU.Date, Converter={StaticResource DateOnlyToDateTimeConverter}}"
+                            Format="dd/MM/yyyy"
+                            MinimumDate="01/01/1900"
+                            MaximumDate="01/01/2100"/>
+            </VerticalStackLayout>
+
+            <!-- Campo para la Carpeta -->
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Carpeta:" Margin="15,0,0,0"/>
+                <Entry Placeholder="Nombre de la Carpeta" 
+                       Text="{Binding TransfersFromU.Folder}" />
+            </VerticalStackLayout>
+
+            <!-- Campo para el Monto -->
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Monto:" Margin="15,0,0,0"/>
+                <Entry Placeholder="Monto" 
+                       Keyboard="Numeric"
+                       Text="{Binding TransfersFromU.Amount, Converter={StaticResource DecimalConverter}, Mode=TwoWay}">
+                    <Entry.Behaviors>
+                        <converters:DecimalSeparatorBehavior />
+                    </Entry.Behaviors>
+                </Entry>
+            </VerticalStackLayout>
+
+            <!-- Campo para el Tipo de Cambio -->
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Tipo de Cambio (Dólar):" Margin="15,0,0,0"/>
+                <Entry Placeholder="Tipo de Cambio" 
+                       Keyboard="Numeric"
+                       Text="{Binding TransfersFromU.DollarExchange, Converter={StaticResource DecimalConverter}, Mode=TwoWay}">
+                    <Entry.Behaviors>
+                        <converters:DecimalSeparatorBehavior />
+                    </Entry.Behaviors>
+                </Entry>
+            </VerticalStackLayout>
+
+            <!-- Campo para los Depósitos en Quetzales -->
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Depósitos en Quetzales:" Margin="15,0,0,0"/>
+                <Entry Placeholder="Monto en Quetzales" 
+                       Keyboard="Numeric"
+                       Text="{Binding TransfersFromU.DepositedQs, Converter={StaticResource DecimalConverter}, Mode=TwoWay}">
+                    <Entry.Behaviors>
+                        <converters:DecimalSeparatorBehavior />
+                    </Entry.Behaviors>
+                </Entry>
+            </VerticalStackLayout>
+
+            <!-- Campo para el estado Activo -->
+            <HorizontalStackLayout HorizontalOptions="Center" Margin="15,0,0,0">
+                <Label Text="Activo:" VerticalOptions="Center" Margin="0,0,15,0"/>
+                <Switch IsToggled="{Binding TransfersFromU.IsActive}" />
+            </HorizontalStackLayout>
+
+            <!-- Mensaje de error -->
+            <Label Text="{Binding ErrorMessage}"
+                   TextColor="Red"
+                   HorizontalOptions="Center"
+                   Margin="0,10,0,0"/>
+
+            <!-- Botón para Editar la Transferencia -->
+            <Button Text="Editar Transferencia" 
+                    Command="{Binding EditCommand}" 
+                    BackgroundColor="{StaticResource Primary}"
+                    TextColor="White"
+                    Margin="0,20,0,0" />
+
+            <!-- Indicador de actividad -->
+            <ActivityIndicator IsRunning="{Binding IsBusy}" 
+                               IsVisible="{Binding IsBusy}" 
+                               Color="Blue" 
+                               VerticalOptions="Center" 
+                               HorizontalOptions="Center"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

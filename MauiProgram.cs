@@ -1,4 +1,5 @@
-﻿using HFPMapp.Services;
+﻿using CommunityToolkit.Maui;
+using HFPMapp.Services;
 using HFPMapp.Services.AppSettings;
 using HFPMapp.Services.HTTP;
 using HFPMapp.ViewModels.Login;
@@ -11,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Serilog;
+using System.Globalization;
 using System.Reflection;
 
 
@@ -33,6 +35,7 @@ namespace HFPMapp
 
             builder
                 .UseMauiApp<App>()
+                .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -55,6 +58,9 @@ namespace HFPMapp
                     .WriteTo.File(Path.Combine(FileSystem.Current.AppDataDirectory, "logs2", "log.txt"), rollingInterval: RollingInterval.Day)
                     .CreateLogger());
 
+            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("es-GT");
+            CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("es-GT");
+
 
             return builder.Build();
         }
@@ -74,6 +80,16 @@ namespace HFPMapp
             services.AddSingleton<VolunteerApiClient>();
             services.AddSingleton<ReportApiClient>();
             services.AddSingleton<ActivityApiClient>();
+            services.AddSingleton<ExpensesDetailApiClient>();
+            services.AddSingleton<RevenuesDetailApiClient>();
+            services.AddSingleton<SummaryApiClient>();
+            services.AddSingleton<PettyCashSummaryApiClient>();
+            services.AddSingleton<TransfersFromUApiClient>();
+            services.AddSingleton<TransfersSummaryApiClient>();
+            services.AddSingleton<BankApiClient>();
+            services.AddSingleton<FolderBankApiClient>();
+            services.AddSingleton<BankSummaryApiClient>();
+            services.AddSingleton<BankBookApiClient>();
 
             //Services required for Login
             services.AddSingleton<LoginViewModel>();
@@ -140,6 +156,88 @@ namespace HFPMapp
             services.AddSingleton<HFPMapp.Views.Projects.Activities.ListView>();
             services.AddSingleton<HFPMapp.ViewModels.Projects.Activities.EditViewModel>();
             services.AddSingleton<HFPMapp.Views.Projects.Activities.EditView>();
+
+            //Services required for ExpensesDetail
+            services.AddSingleton<HFPMapp.ViewModels.Accounting.MenuViewModel>();
+            services.AddSingleton<HFPMapp.Views.Accounting.MenuView>();
+            services.AddSingleton<HFPMapp.ViewModels.Accounting.ExpensesDetails.CreateViewModel>();
+            services.AddSingleton<HFPMapp.Views.Accounting.ExpensesDetails.CreateView>();
+            services.AddSingleton<HFPMapp.ViewModels.Accounting.ExpensesDetails.ListViewModel>();
+            services.AddSingleton<HFPMapp.Views.Accounting.ExpensesDetails.ListView>();
+            services.AddSingleton<HFPMapp.ViewModels.Accounting.ExpensesDetails.EditViewModel>();
+            services.AddSingleton<HFPMapp.Views.Accounting.ExpensesDetails.EditView>();
+
+            //Services required for RevenuesDetail
+            services.AddSingleton<HFPMapp.ViewModels.Accounting.RevenuesDetails.CreateViewModel>();
+            services.AddSingleton<HFPMapp.Views.Accounting.RevenuesDetails.CreateView>();
+            services.AddSingleton<HFPMapp.ViewModels.Accounting.RevenuesDetails.ListViewModel>();
+            services.AddSingleton<HFPMapp.Views.Accounting.RevenuesDetails.ListView>();
+            services.AddSingleton<HFPMapp.ViewModels.Accounting.RevenuesDetails.EditViewModel>();
+            services.AddSingleton<HFPMapp.Views.Accounting.RevenuesDetails.EditView>();
+
+            //Services required for Summary
+            services.AddSingleton<HFPMapp.ViewModels.Accounting.Summary.CreateViewModel>();
+            services.AddSingleton<HFPMapp.Views.Accounting.Summary.CreateView>();
+            services.AddSingleton<HFPMapp.ViewModels.Accounting.Summary.ListViewModel>();
+            services.AddSingleton<HFPMapp.Views.Accounting.Summary.ListView>();
+            services.AddSingleton<HFPMapp.ViewModels.Accounting.Summary.EditViewModel>();
+            services.AddSingleton<HFPMapp.Views.Accounting.Summary.EditView>();
+
+            //Services required for PettyCashSummary
+            services.AddSingleton<HFPMapp.ViewModels.Accounting.PettyCashSummary.CreateViewModel>();
+            services.AddSingleton<HFPMapp.Views.Accounting.PettyCashSummary.CreateView>();
+            services.AddSingleton<HFPMapp.ViewModels.Accounting.PettyCashSummary.ListViewModel>();
+            services.AddSingleton<HFPMapp.Views.Accounting.PettyCashSummary.ListView>();
+            services.AddSingleton<HFPMapp.ViewModels.Accounting.PettyCashSummary.EditViewModel>();
+            services.AddSingleton<HFPMapp.Views.Accounting.PettyCashSummary.EditView>();
+
+            //Services required for TransfersFromU
+            services.AddSingleton<HFPMapp.ViewModels.Accounting.TransfersFromUS.CreateViewModel>();
+            services.AddSingleton<HFPMapp.Views.Accounting.TransfersFromUS.CreateView>();
+            services.AddSingleton<HFPMapp.ViewModels.Accounting.TransfersFromUS.ListViewModel>();
+            services.AddSingleton<HFPMapp.Views.Accounting.TransfersFromUS.ListView>();
+            services.AddSingleton<HFPMapp.ViewModels.Accounting.TransfersFromUS.EditViewModel>();
+            services.AddSingleton<HFPMapp.Views.Accounting.TransfersFromUS.EditView>();
+
+            //Services required for TransfersSummary
+            services.AddSingleton<HFPMapp.ViewModels.Accounting.TransfersSummary.CreateViewModel>();
+            services.AddSingleton<HFPMapp.Views.Accounting.TransfersSummary.CreateView>();
+            services.AddSingleton<HFPMapp.ViewModels.Accounting.TransfersSummary.ListViewModel>();
+            services.AddSingleton<HFPMapp.Views.Accounting.TransfersSummary.ListView>();
+            services.AddSingleton<HFPMapp.ViewModels.Accounting.TransfersSummary.EditViewModel>();
+            services.AddSingleton<HFPMapp.Views.Accounting.TransfersSummary.EditView>();
+
+            //Services required for Bank
+            services.AddSingleton<HFPMapp.ViewModels.Accounting.Bank.CreateViewModel>();
+            services.AddSingleton<HFPMapp.Views.Accounting.Bank.CreateView>();
+            services.AddSingleton<HFPMapp.ViewModels.Accounting.Bank.ListViewModel>();
+            services.AddSingleton<HFPMapp.Views.Accounting.Bank.ListView>();
+            services.AddSingleton<HFPMapp.ViewModels.Accounting.Bank.EditViewModel>();
+            services.AddSingleton<HFPMapp.Views.Accounting.Bank.EditView>();
+
+            //Services required for FolderBank
+            services.AddSingleton<HFPMapp.ViewModels.Accounting.FolderBank.CreateViewModel>();
+            services.AddSingleton<HFPMapp.Views.Accounting.FolderBank.CreateView>();
+            services.AddSingleton<HFPMapp.ViewModels.Accounting.FolderBank.ListViewModel>();
+            services.AddSingleton<HFPMapp.Views.Accounting.FolderBank.ListView>();
+            services.AddSingleton<HFPMapp.ViewModels.Accounting.FolderBank.EditViewModel>();
+            services.AddSingleton<HFPMapp.Views.Accounting.FolderBank.EditView>();
+
+            //Services required for BankSummary
+            services.AddSingleton<HFPMapp.ViewModels.Accounting.BankSummary.CreateViewModel>();
+            services.AddSingleton<HFPMapp.Views.Accounting.BankSummary.CreateView>();
+            services.AddSingleton<HFPMapp.ViewModels.Accounting.BankSummary.ListViewModel>();
+            services.AddSingleton<HFPMapp.Views.Accounting.BankSummary.ListView>();
+            services.AddSingleton<HFPMapp.ViewModels.Accounting.BankSummary.EditViewModel>();
+            services.AddSingleton<HFPMapp.Views.Accounting.BankSummary.EditView>();
+
+            //Services required for BankBook
+            services.AddSingleton<HFPMapp.ViewModels.Accounting.BankBook.CreateViewModel>();
+            services.AddSingleton<HFPMapp.Views.Accounting.BankBook.CreateView>();
+            services.AddSingleton<HFPMapp.ViewModels.Accounting.BankBook.ListViewModel>();
+            services.AddSingleton<HFPMapp.Views.Accounting.BankBook.ListView>();
+            services.AddSingleton<HFPMapp.ViewModels.Accounting.BankBook.EditViewModel>();
+            services.AddSingleton<HFPMapp.Views.Accounting.BankBook.EditView>();
 
 
             return services;

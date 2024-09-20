@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:HFPMapp.Services.Converters"
+             x:Class="HFPMapp.Views.Accounting.TransfersSummary.EditView"
+             Style="{StaticResource ContentPageStyle}"
+             Title="Editar resumen de transferencias">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:DecimalConverter x:Key="DecimalConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20">
+
+            <Label Text="Editar Resumen de Transferencia" 
+                   FontSize="24" 
+                   HorizontalOptions="Center" 
+                   VerticalOptions="Start" 
+                   Margin="0,10,0,20"/>
+
+            <!-- Campo para el Año -->
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Año:" Margin="15,0,0,0"/>
+                <Entry Placeholder="Año" 
+                       Keyboard="Numeric"
+                       Text="{Binding TransferSummary.Year}" />
+            </VerticalStackLayout>
+
+            <!-- Campo para el Ingreso Total -->
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Ingreso Total:" Margin="15,0,0,0"/>
+                <Entry Placeholder="Ingreso Total" 
+                       Keyboard="Numeric"
+                       Text="{Binding TransferSummary.TotalIncome, Converter={StaticResource DecimalConverter}, Mode=TwoWay}">
+                    <Entry.Behaviors>
+                        <converters:DecimalSeparatorBehavior />
+                    </Entry.Behaviors>
+                </Entry>
+            </VerticalStackLayout>
+
+            <!-- Campo para los Gastos Totales -->
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Gastos Totales:" Margin="15,0,0,0"/>
+                <Entry Placeholder="Gastos Totales" 
+                       Keyboard="Numeric"
+                       Text="{Binding TransferSummary.TotalExpenses, Converter={StaticResource DecimalConverter}, Mode=TwoWay}">
+                    <Entry.Behaviors>
+                        <converters:DecimalSeparatorBehavior />
+                    </Entry.Behaviors>
+                </Entry>
+            </VerticalStackLayout>
+
+            <!-- Campo para el Ingreso Neto -->
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Ingreso Neto:" Margin="15,0,0,0"/>
+                <Entry Placeholder="Ingreso Neto" 
+                       Keyboard="Numeric"
+                       Text="{Binding TransferSummary.NetIncome, Converter={StaticResource DecimalConverter}, Mode=TwoWay}">
+                    <Entry.Behaviors>
+                        <converters:DecimalSeparatorBehavior />
+                    </Entry.Behaviors>
+                </Entry>
+            </VerticalStackLayout>
+
+            <!-- Campo para las Utilidades Retenidas -->
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Utilidades Retenidas:" Margin="15,0,0,0"/>
+                <Entry Placeholder="Utilidades Retenidas" 
+                       Keyboard="Numeric"
+                       Text="{Binding TransferSummary.RetainedEarning, Converter={StaticResource DecimalConverter}, Mode=TwoWay}">
+                    <Entry.Behaviors>
+                        <converters:DecimalSeparatorBehavior />
+                    </Entry.Behaviors>
+                </Entry>
+            </VerticalStackLayout>
+
+            <!-- Campo para Caja Bancaria -->
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Caja Bancaria:" Margin="15,0,0,0"/>
+                <Entry Placeholder="Caja Bancaria" 
+                       Keyboard="Numeric"
+                       Text="{Binding TransferSummary.BankBox, Converter={StaticResource DecimalConverter}, Mode=TwoWay}">
+                    <Entry.Behaviors>
+                        <converters:DecimalSeparatorBehavior />
+                    </Entry.Behaviors>
+                </Entry>
+            </VerticalStackLayout>
+
+            <!-- Campo para el estado Activo -->
+            <HorizontalStackLayout HorizontalOptions="Center" Margin="15,0,0,0">
+                <Label Text="Activo:" VerticalOptions="Center" Margin="0,0,15,0"/>
+                <Switch IsToggled="{Binding TransferSummary.IsActive}" />
+            </HorizontalStackLayout>
+
+            <!-- Mensaje de error -->
+            <Label Text="{Binding ErrorMessage}"
+                   TextColor="Red"
+                   HorizontalOptions="Center"
+                   Margin="0,10,0,0"/>
+
+            <!-- Botón para Editar el Resumen de Transferencia -->
+            <Button Text="Editar Resumen de Transferencia" 
+                    Command="{Binding EditCommand}" 
+                    BackgroundColor="{StaticResource Primary}"
+                    TextColor="White"
+                    Margin="0,20,0,0" />
+
+            <!-- Indicador de actividad -->
+            <ActivityIndicator IsRunning="{Binding IsBusy}" 
+                               IsVisible="{Binding IsBusy}" 
+                               Color="Blue" 
+                               VerticalOptions="Center" 
+                               HorizontalOptions="Center"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

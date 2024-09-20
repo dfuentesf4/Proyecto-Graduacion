@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:HFPMapp.Services.Converters"
+             x:Class="HFPMapp.Views.Accounting.Summary.CreateView"
+             Style="{StaticResource ContentPageStyle}"
+             Title="Crear Resumen">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:DecimalConverter x:Key="DecimalConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20">
+
+            <Label Text="Crear Resumen" 
+                   FontSize="24" 
+                   HorizontalOptions="Center" 
+                   VerticalOptions="Start" 
+                   Margin="0,10,0,20"/>
+
+            <!-- Campo para el Año -->
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Año:" Margin="15,0,0,0"/>
+                <Entry Placeholder="Año" 
+                       Keyboard="Numeric"
+                       Text="{Binding Summary.Year}" />
+            </VerticalStackLayout>
+
+            <!-- Campo para el Mes -->
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Mes:" Margin="15,0,0,0"/>
+                <Picker Title="Seleccionar Mes" 
+                        SelectedItem="{Binding SelectedMonth}"
+                        ItemsSource="{Binding Months}"
+                        ItemDisplayBinding="{Binding .}"
+                        Margin="15"/>
+            </VerticalStackLayout>
+
+            <!-- Campo para el Tipo de Cambio (Dólar) -->
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Tipo de Cambio (Dólar):" Margin="15,0,0,0"/>
+                <Entry Placeholder="Tipo de Cambio" 
+                       Keyboard="Numeric"
+                       Text="{Binding Summary.DollarExchange, Converter={StaticResource DecimalConverter}, Mode=TwoWay}">
+                    <Entry.Behaviors>
+                        <converters:DecimalSeparatorBehavior />
+                    </Entry.Behaviors>
+                </Entry>
+            </VerticalStackLayout>
+
+            <!-- Campo para los Gastos -->
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Gastos:" Margin="15,0,0,0"/>
+                <Entry Placeholder="Gastos" 
+                       Keyboard="Numeric"
+                       Text="{Binding Summary.Expenses, Converter={StaticResource DecimalConverter}, Mode=TwoWay}">
+                    <Entry.Behaviors>
+                        <converters:DecimalSeparatorBehavior />
+                    </Entry.Behaviors>
+                </Entry>
+            </VerticalStackLayout>
+
+            <!-- Campo para los Ingresos -->
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Ingresos:" Margin="15,0,0,0"/>
+                <Entry Placeholder="Ingresos" 
+                       Keyboard="Numeric"
+                       Text="{Binding Summary.Revenues, Converter={StaticResource DecimalConverter}, Mode=TwoWay}">
+                    <Entry.Behaviors>
+                        <converters:DecimalSeparatorBehavior />
+                    </Entry.Behaviors>
+                </Entry>
+            </VerticalStackLayout>
+
+            <!-- Campo para las Salidas -->
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Salidas:" Margin="15,0,0,0"/>
+                <Entry Placeholder="Salidas" 
+                       Keyboard="Numeric"
+                       Text="{Binding Summary.Outflows, Converter={StaticResource DecimalConverter}, Mode=TwoWay}">
+                    <Entry.Behaviors>
+                        <converters:DecimalSeparatorBehavior />
+                    </Entry.Behaviors>
+                </Entry>
+            </VerticalStackLayout>
+
+            <!-- Campo para el estado Activo -->
+            <HorizontalStackLayout HorizontalOptions="Center" Margin="15,0,0,0">
+                <Label Text="Activo:" VerticalOptions="Center" Margin="0,0,15,0"/>
+                <Switch IsToggled="{Binding Summary.IsActive}" />
+            </HorizontalStackLayout>
+
+            <!-- Mensaje de error -->
+            <Label Text="{Binding ErrorMessage}"
+                   TextColor="Red"
+                   HorizontalOptions="Center"
+                   Margin="0,10,0,0"/>
+
+            <!-- Botón para crear el Resumen -->
+            <Button Text="Crear Resumen" 
+                    Command="{Binding CreateCommand}" 
+                    BackgroundColor="{StaticResource Primary}"
+                    TextColor="White"
+                    Margin="0,20,0,0" />
+
+            <!-- Indicador de actividad -->
+            <ActivityIndicator IsRunning="{Binding IsBusy}" 
+                               IsVisible="{Binding IsBusy}" 
+                               Color="Blue" 
+                               VerticalOptions="Center" 
+                               HorizontalOptions="Center"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

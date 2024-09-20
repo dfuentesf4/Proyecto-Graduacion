@@ -9,6 +9,7 @@
     xmlns:userViews="clr-namespace:HFPMapp.Views.Users"
     xmlns:donorViews="clr-namespace:HFPMapp.Views.Donors"
     xmlns:projectsViews="clr-namespace:HFPMapp.Views.Projects"
+    xmlns:accountingViews="clr-namespace:HFPMapp.Views.Accounting"
     xmlns:settingsViews="clr-namespace:HFPMapp.Views.Settings"
     Shell.FlyoutBehavior="Disabled"
     Title="HFPMapp">
@@ -39,12 +40,12 @@
         <ShellContent Route="Projects" ContentTemplate="{DataTemplate projectsViews:MenuView}"/>
     </FlyoutItem>
 
-    <FlyoutItem Title="Configuraciones" FlyoutIcon="settings_icon.png">
-        <ShellContent Route="Settings" ContentTemplate="{DataTemplate settingsViews:SettingsView}" />
+    <FlyoutItem Title="Contabilidad">
+        <ShellContent Route="Accounting" ContentTemplate="{DataTemplate accountingViews:MenuView}" />
     </FlyoutItem>
 
-    <FlyoutItem Title="Contabilidad">
-
+    <FlyoutItem Title="Configuraciones" FlyoutIcon="settings_icon.png">
+        <ShellContent Route="Settings" ContentTemplate="{DataTemplate settingsViews:SettingsView}" />
     </FlyoutItem>
 
     <FlyoutItem Title="Log Out" FlyoutIcon="logout_icon.png">
