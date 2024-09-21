@@ -9,13 +9,15 @@ namespace HFPMapp.Services
 {
     public class UserSessionService
     {
-        public User? CurrentUser { get; set; }
+        public static User? CurrentUser { get; set; }
 
         public bool IsUserLoggedIn => CurrentUser != null;
 
-        public void ClearSession()
+        public static void ClearSession()
         {
             CurrentUser = null;
         }
+
+       
     }
 }

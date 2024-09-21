@@ -11,10 +11,22 @@
     xmlns:projectsViews="clr-namespace:HFPMapp.Views.Projects"
     xmlns:accountingViews="clr-namespace:HFPMapp.Views.Accounting"
     xmlns:settingsViews="clr-namespace:HFPMapp.Views.Settings"
+    xmlns:aboutUs="clr-namespace:HFPMapp.Views.AboutUs"
     Shell.FlyoutBehavior="Disabled"
+    Shell.FlyoutBackground="{StaticResource Primary}"
     Title="HFPMapp">
 
-    
+
+    <Shell.FlyoutHeader>
+        <StackLayout BackgroundColor="{StaticResource Primary}" Padding="10">
+            <Image Source="logo.png" WidthRequest="60" HeightRequest="60" HorizontalOptions="Center" />
+        </StackLayout>
+    </Shell.FlyoutHeader>
+
+    <FlyoutItem Title="Log Out" FlyoutIcon="logout_icon.png" FlyoutItemIsVisible="False">
+        <ShellContent ContentTemplate="{DataTemplate loginViews:LoginView}"
+                  Route="Login" />
+    </FlyoutItem>
 
     <FlyoutItem Title="Home" FlyoutIcon="home_icon.png">
         <ShellContent Route="Home" ContentTemplate="{DataTemplate homeViews:HomeView}" />
@@ -40,16 +52,26 @@
         <ShellContent Route="Projects" ContentTemplate="{DataTemplate projectsViews:MenuView}"/>
     </FlyoutItem>
 
-    <FlyoutItem Title="Contabilidad">
+    <FlyoutItem Title="Contabilidad" FlyoutIcon="accounting_icon.png">
         <ShellContent Route="Accounting" ContentTemplate="{DataTemplate accountingViews:MenuView}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Sobre Nosotros" FlyoutIcon="web_icon.png">
+        <ShellContent Route="AboutUs" ContentTemplate="{DataTemplate aboutUs:AboutUs}" />
     </FlyoutItem>
 
     <FlyoutItem Title="Configuraciones" FlyoutIcon="settings_icon.png">
         <ShellContent Route="Settings" ContentTemplate="{DataTemplate settingsViews:SettingsView}" />
     </FlyoutItem>
 
-    <FlyoutItem Title="Log Out" FlyoutIcon="logout_icon.png">
-        <ShellContent ContentTemplate="{DataTemplate loginViews:LoginView}"
-                      Route="Login" />
-    </FlyoutItem>
+    <MenuItem Text="Log Out" 
+      IconImageSource="logout_icon.png"
+      Command="{Binding LogoutCommand}" />
+
+
+    <Shell.FlyoutFooter>
+        <StackLayout Margin="10,10,10,20" BackgroundColor="{StaticResource Primary}">
+            <Label Text="Versión 1.0.0" FontSize="12" HorizontalOptions="Center" />
+        </StackLayout>
+    </Shell.FlyoutFooter>
 </Shell>

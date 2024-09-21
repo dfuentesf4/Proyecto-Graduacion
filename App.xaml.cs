@@ -1,4 +1,6 @@
-﻿namespace HFPMapp
+﻿using HFPMapp.Services;
+
+namespace HFPMapp
 {
     public partial class App : Application
     {
@@ -11,8 +13,8 @@
 
         protected override async void OnStart()
         {
-            await Shell.Current.GoToAsync("//Accounting");
-            Shell.Current.FlyoutBehavior = FlyoutBehavior.Flyout;
+            await Shell.Current.GoToAsync("//Login", true);
+            Shell.Current.FlyoutBehavior = FlyoutBehavior.Disabled;
             base.OnStart();
 
             try

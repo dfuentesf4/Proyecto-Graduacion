@@ -69,12 +69,14 @@
 
 	<ItemGroup>
 	  <None Remove="appsettings.json" />
+	  <None Remove="Resources\Images\accounting_icon.svg" />
 	  <None Remove="Resources\Images\home_icon.svg" />
 	  <None Remove="Resources\Images\logo.png" />
 	  <None Remove="Resources\Images\logout_icon.svg" />
 	  <None Remove="Resources\Images\project_icon.svg" />
 	  <None Remove="Resources\Images\settings_icon.svg" />
 	  <None Remove="Resources\Images\user_icon.svg" />
+	  <None Remove="Resources\Images\web_icon.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -101,6 +103,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Resources\Styles\MyStyles.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\AboutUs\AboutUs.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Accounting\BankBook\CreateView.xaml">

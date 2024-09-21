@@ -9,6 +9,7 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <converters:CurrencyConverter x:Key="CurrencyConverter" />
+            <converters:MonthNameConverter x:Key="MonthNameConverter"/>
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -78,7 +79,7 @@
 
                                         <HorizontalStackLayout>
                                             <Label Text="Mes:"/>
-                                            <Label Text="{Binding Month}" Margin="5,0,0,0"/>
+                                            <Label Text="{Binding Month, Converter={StaticResource MonthNameConverter}}" Margin="5,0,0,0"/>
                                         </HorizontalStackLayout>
 
                                         <HorizontalStackLayout>

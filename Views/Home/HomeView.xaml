@@ -2,10 +2,10 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HFPMapp.Views.Home.HomeView"
-             Title="Home"
-             Style="{StaticResource ContentPageStyle}">
+             Style="{StaticResource ContentPageStyle}"
+             Title="Home">
     <ContentPage.Content>
-        <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
+        <VerticalStackLayout VerticalOptions="Start" HorizontalOptions="Center" Margin="0,10,0,10">
 
             <!-- Logo de la aplicación -->
             <Image Source="logo.png" WidthRequest="150" HeightRequest="150" />
@@ -16,20 +16,16 @@
                    HorizontalOptions="Center"
                    Margin="20"/>
 
-            <!-- Nombre del usuario -->
-            <Label Text="{Binding UserName}" 
-                   FontSize="20" 
-                   HorizontalOptions="Center"
-                   TextColor="Black" 
-                   Margin="10" />
+            <Label Text="Sobre Nosotros..."
+                   FontSize="16"
+                   HorizontalOptions="Start"
+                   Margin="20"/>
 
-            <!-- Botón para continuar -->
-            <Button Text="Continuar" 
-                    Command="{Binding ContinueCommand}"
-                    BackgroundColor="{StaticResource Primary}"
-                    TextColor="White"
-                    WidthRequest="200"
-                    Margin="20"/>
+            <Label FontSize="16"
+                   HorizontalOptions="Start"
+                   Margin="20">
+                En 1991, la Fundación Manos por la Paz se constituyó como una organización sin fines de lucro. Hoy, contamos con nuestras propias instalaciones donde podemos alojar hasta 16 visitantes a la vez en nuestra sede de Santa Cruz Barillas. También contamos con personal de tiempo completo en el terreno en Guatemala y vehículos que se utilizan para brindar servicios a las más de 280 aldeas que rodean el área de Barillas. Nos reunimos regularmente con los líderes de las aldeas para determinar las necesidades de los habitantes mayas nativos. A menudo encontramos aldeas que parecen “perdidas en el tiempo”, sin electricidad, sin suministro de agua potable y con poca comida para comer. Cocinan con fogatas dentro de sus chozas y sufren los efectos secundarios nocivos de respirar constantemente el humo de las fogatas. Las comidas suelen consistir en solo tortillas y sal: tres comidas al día. Cuando el trabajo escasea, las familias pueden incluso pasar días sin comer.
+            </Label>
         </VerticalStackLayout>
     </ContentPage.Content>
 </ContentPage>

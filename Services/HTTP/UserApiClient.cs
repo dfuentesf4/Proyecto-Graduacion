@@ -64,12 +64,12 @@ namespace HFPMapp.Services.HTTP
 
                     
                     User responseUser = JsonSerializer.Deserialize<User>(decryptedResponse);
-                    viewModel._userSessionService.CurrentUser = responseUser;
+                    UserSessionService.CurrentUser = responseUser;
                     return true; 
                 }
                 else
                 {
-                    viewModel._userSessionService.ClearSession();
+                    UserSessionService.ClearSession();
                     return false;
                 }
             }

@@ -95,6 +95,8 @@ namespace HFPMapp
             services.AddSingleton<LoginViewModel>();
             services.AddSingleton<LoginView>();
 
+
+
             //Services required for Settings
             services.AddSingleton<SettingsViewModel>();
             services.AddSingleton<SettingsView>();

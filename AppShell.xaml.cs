@@ -1,11 +1,14 @@
-﻿namespace HFPMapp
+﻿using HFPMapp.Services;
+using System.Windows.Input;
+
+namespace HFPMapp
 {
     public partial class AppShell : Shell
     {
+
         public AppShell()
         {
             InitializeComponent();
-
             //Rutas User
             Routing.RegisterRoute("EditUser", typeof(Views.Users.EditView));
             Routing.RegisterRoute("CreateUser", typeof(Views.Users.CreateView));
@@ -73,7 +76,24 @@
             Routing.RegisterRoute("CreateBankBook", typeof(Views.Accounting.BankBook.CreateView));
             Routing.RegisterRoute("EditBankBook", typeof(Views.Accounting.BankBook.EditView));
 
+            BindingContext = this;
 
+        }
+
+        public ICommand LogoutCommand => new Command(OnLogout);
+
+        private async void OnLogout()
+        {
+
+            // Deshabilitar el menú lateral
+            Shell.Current.FlyoutBehavior = FlyoutBehavior.Disabled;
+
+            UserSessionService.ClearSession();
+
+            // Navegar al login
+            await Shell.Current.GoToAsync("//Login");
+
+            
         }
     }
 }

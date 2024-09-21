@@ -39,6 +39,7 @@
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource LightPrimary}}"/>
         <Setter Property="WidthRequest" Value="{x:OnPlatform WinUI=350, Android=250, iOS=250}"/>
         <Setter Property="FontSize" Value="18"/>
+        <Setter Property="TitleColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource LightFont}}"/>
     </Style>
 
     <Style TargetType="Label">
@@ -63,5 +64,9 @@
         <Setter Property="Margin" Value="{x:OnPlatform WinUI=15, Android=10, iOS=10}"/>
     </Style>
 
+    <Style TargetType="RadioButton">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource LightFont}}"/>
+        <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"/>
+    </Style>
 
 </ResourceDictionary>

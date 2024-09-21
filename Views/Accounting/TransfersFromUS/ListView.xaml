@@ -8,6 +8,7 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <converters:CurrencyConverter x:Key="CurrencyConverter" />
+            <converters:DateOnlyToStringConverter x:Key="DateOnlyToStringConverter"/>
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -72,7 +73,7 @@
                                                          Padding="5">
                                         <HorizontalStackLayout>
                                             <Label Text="Fecha:"/>
-                                            <Label Text="{Binding Date}" Margin="5,0,0,0"/>
+                                            <Label Text="{Binding Date, Converter={converters:DateOnlyToDateTimeConverter}, Mode=TwoWay}" Margin="5,0,0,0"/>
                                         </HorizontalStackLayout>
 
                                         <HorizontalStackLayout>
@@ -82,7 +83,7 @@
 
                                         <HorizontalStackLayout>
                                             <Label Text="Monto:"/>
-                                            <Label Text="{Binding Amount, Converter={StaticResource CurrencyConverter}}" Margin="5,0,0,0"/>
+                                            <Label Text="{Binding Amount, Converter={converters:DollarCurrencyConverter}}" Margin="5,0,0,0"/>
                                         </HorizontalStackLayout>
 
                                         <HorizontalStackLayout>

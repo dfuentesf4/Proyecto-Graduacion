@@ -77,7 +77,7 @@
 
                                         <HorizontalStackLayout>
                                             <Label Text="Mes:"/>
-                                            <Label Text="{Binding Month}" Margin="5,0,0,0"/>
+                                            <Label Text="{Binding Month, Converter={converters:MonthNameConverter}}" Margin="5,0,0,0"/>
                                         </HorizontalStackLayout>
 
                                         <HorizontalStackLayout>

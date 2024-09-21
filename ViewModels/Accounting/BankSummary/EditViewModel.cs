@@ -1,4 +1,5 @@
-﻿using HFPMapp.Services.Alerts;
+﻿using HFPMapp.Models;
+using HFPMapp.Services.Alerts;
 using HFPMapp.Services.HTTP;
 using System;
 using System.Collections.Generic;
@@ -38,7 +39,7 @@ namespace HFPMapp.ViewModels.Accounting.BankSummary
                 {
                     SelectedMonth = (HFPMapp.Models.MonthsEnum)BankSummary.Month.Value;
                 }
-                if (BankSummary != null && BankSummary.BankId.HasValue)
+                if (BankSummary != null && BankSummary.BankId.HasValue && Banks is not null)
                 {
                     SelectedBank = Banks.FirstOrDefault(b => b.Id == BankSummary.BankId.Value);
                 }
@@ -85,7 +86,19 @@ namespace HFPMapp.ViewModels.Accounting.BankSummary
             }
         }
 
-        public List<HFPMapp.Models.MonthsEnum> Months { get; }
+        private List<MonthsEnum> _Months;
+        public List<MonthsEnum> Months
+        {
+            get
+            {
+                return _Months;
+            }
+            set
+            {
+                _Months = value;
+                OnPropertyChanged(nameof(Months));
+            }
+        }
 
         private string _errorMessage;
         public string ErrorMessage
@@ -113,9 +126,11 @@ namespace HFPMapp.ViewModels.Accounting.BankSummary
         {
             Banks = await BankApiClient.GetBanksAsync();
 
-            if (BankSummary != null && BankSummary.BankId.HasValue)
+            
+
+            if (BankSummary != null && BankSummary.BankId.HasValue && Banks is not null)
             {
-                SelectedBank = Banks.FirstOrDefault(b => b.Id == BankSummary.BankId.Value);
+                SelectedBank = Banks.FirstOrDefault(b => b.Id == BankSummary.BankId);
             }
         }
 

@@ -23,6 +23,7 @@
                             VerticalOptions="Center" Margin="5,0,0,0"/>
                     <Button Text="Crear"
                             Margin="10,0,0,0"
+                            Background="#2874a6"
                             WidthRequest="{x:OnPlatform WinUI=350, Android=130, iOS=130}"
                             VerticalOptions="Center"
                             Command="{Binding CreateCommand}"/>
@@ -31,6 +32,7 @@
                         <On Platform="WinUI">
                             <HorizontalStackLayout>
                                 <Button Text="Actualizar"
+                                        Background="#2874a6"
                                         Command="{Binding RefreshCommand}"/>
                             </HorizontalStackLayout>
                         </On>
@@ -41,13 +43,21 @@
 
                 <CollectionView ItemsSource="{Binding Users}"
                                     x:Name="listView">
+                    <CollectionView.Margin>
+                        <OnPlatform >
+                            <On Platform="WinUI" Value="10,0,10,0" />
+                        </OnPlatform>
+                    </CollectionView.Margin>
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+                    </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <SwipeView>
                                 <SwipeView.LeftItems>
                                     <SwipeItems>
                                         <SwipeItem Text="Editar"
-                                                       BackgroundColor="{StaticResource Primary}"
+                                                       BackgroundColor="#FF5733"
                                                        Command="{Binding Source={x:Reference listView}, Path=BindingContext.EditCommand}"
                                                        CommandParameter="{Binding}"/>
                                     </SwipeItems>
@@ -55,14 +65,19 @@
                                 <SwipeView.RightItems>
                                     <SwipeItems>
                                         <SwipeItem Text="Eliminar"
-                                                       BackgroundColor="Red"
+                                                       BackgroundColor="#da0000"
                                                        Command="{Binding Source={x:Reference listView}, Path=BindingContext.DeleteCommand}"
                                                        CommandParameter="{Binding}"/>
                                     </SwipeItems>
                                 </SwipeView.RightItems>
                                 <Border Stroke="Gray"
-                                            StrokeThickness="1"
-                                            Margin="2">
+                                        StrokeThickness="1"
+                                        Padding="10">
+
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="20" />
+                                    </Border.StrokeShape>
+                                    
                                     <VerticalStackLayout Background="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"
                                                              Padding="5">
                                         <HorizontalStackLayout>
@@ -106,9 +121,11 @@
                                             <On Platform="WinUI">
                                                 <HorizontalStackLayout>
                                                     <Button Text="Editar"
+                                                            Background="#FF5733"
                                                             Command="{Binding Source={x:Reference listView}, Path=BindingContext.EditCommand}"
                                                             CommandParameter="{Binding}" />
                                                     <Button Text="Eliminar"
+                                                            Background="#da0000"
                                                             Command="{Binding Source={x:Reference listView}, Path=BindingContext.DeleteCommand}"
                                                             CommandParameter="{Binding}" />
                                                 </HorizontalStackLayout>
