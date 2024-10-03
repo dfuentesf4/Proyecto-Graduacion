@@ -81,6 +81,83 @@ namespace HFPMapp.Services.HTTP
             }
         }
 
+        public async Task<bool> SendRecoveryToken(string user)
+        {
+            try
+            {
+                // Crear la solicitud encriptada
+                var encryptedRequest = new EncryptedRequest
+                {
+                    EncryptedData = EncryptionHelper.Encrypt(user)
+                };
+
+                // Configurar HttpClient
+                using var httpClient = new HttpClient();
+                string apiUrl = $"{_apiBaseUrl}/Users/RequestPasswordReset";
+
+                var content = new StringContent(JsonSerializer.Serialize(encryptedRequest), Encoding.UTF8, "application/json");
+                var response = await httpClient.PostAsync(apiUrl, content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejar excepciones
+                Console.WriteLine("Failed to send recovery token: " + ex.Message);
+                return false;
+            }
+        }
+
+        public async Task<bool> ResetPasswordAsync(string userName, string newPassword, string token)
+        {
+            try
+            {
+                // Crear el objeto de solicitud
+                var resetPasswordRequest = new ResetPasswordRequest
+                {
+                    UserName = userName,
+                    NewPassword = newPassword,
+                    Token = token
+                };
+
+                // Serializar la solicitud a JSON
+                string requestData = JsonSerializer.Serialize(resetPasswordRequest);
+                string encryptedData = EncryptionHelper.Encrypt(requestData);
+
+                // Crear la solicitud encriptada
+                var encryptedRequest = new EncryptedRequest
+                {
+                    EncryptedData = encryptedData
+                };
+
+                // Configurar HttpClient
+                using var httpClient = new HttpClient();
+                string apiUrl = $"{_apiBaseUrl}/Users/ResetPassword";
+
+                // Serializar la solicitud encriptada y crear el contenido de la solicitud
+                var content = new StringContent(JsonSerializer.Serialize(encryptedRequest), Encoding.UTF8, "application/json");
+
+                // Realizar la solicitud POST a la API
+                var response = await httpClient.PostAsync(apiUrl, content);
+
+                // Evaluar si la solicitud fue exitosa
+                return response.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
+                // Manejar excepciones y registrar errores
+                Console.WriteLine($"Error al restablecer la contraseña: {ex.Message}");
+                return false;
+            }
+        }
+
         public async Task<bool> CreateUserAsync(User newUser)
         {
             try
@@ -167,7 +244,6 @@ namespace HFPMapp.Services.HTTP
             }
         }
 
-
         public async Task<bool> UpdateUserAsync(User updatedUser)
         {
             try
@@ -209,5 +285,13 @@ namespace HFPMapp.Services.HTTP
             }
         }
 
+    }
+
+
+    public class ResetPasswordRequest
+    {
+        public string UserName { get; set; }
+        public string NewPassword { get; set; }
+        public string Token { get; set; }
     }
 }

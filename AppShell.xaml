@@ -12,6 +12,7 @@
     xmlns:accountingViews="clr-namespace:HFPMapp.Views.Accounting"
     xmlns:settingsViews="clr-namespace:HFPMapp.Views.Settings"
     xmlns:aboutUs="clr-namespace:HFPMapp.Views.AboutUs"
+    xmlns:reports="clr-namespace:HFPMapp.Views.Reports"
     Shell.FlyoutBehavior="Disabled"
     Shell.FlyoutBackground="{StaticResource Primary}"
     Title="HFPMapp">
@@ -54,6 +55,10 @@
 
     <FlyoutItem Title="Contabilidad" FlyoutIcon="accounting_icon.png">
         <ShellContent Route="Accounting" ContentTemplate="{DataTemplate accountingViews:MenuView}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Reporteria" FlyoutIcon="chart_icon.png">
+        <ShellContent Route="Reports" ContentTemplate="{DataTemplate reports:MenuView}" />
     </FlyoutItem>
 
     <FlyoutItem Title="Sobre Nosotros" FlyoutIcon="web_icon.png">

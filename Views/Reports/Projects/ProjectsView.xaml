@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:chart="clr-namespace:Syncfusion.Maui.Charts;assembly=Syncfusion.Maui.Charts"
+             x:Class="HFPMapp.Views.Reports.Projects.ProjectsView"
+             Style="{StaticResource ContentPageStyle}"
+             Title="Graficas Proyectos">
+    <VerticalStackLayout>
+
+        <chart:SfCartesianChart VerticalOptions="FillAndExpand"
+                                HorizontalOptions="Fill"
+                                Title="Proyectos Por Presupuesto"
+                                HeightRequest="{OnPlatform WinUI=600, MacCatalyst=600}">
+
+            <chart:SfCartesianChart.Resources>
+                <DataTemplate x:Key="tooltiptemplate">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Row="0" Grid.Column="0" Text="{Binding Item.Name}" HorizontalOptions="Center" Margin="0,0,0,2" HorizontalTextAlignment="Center"/>
+                        <BoxView Grid.Row="1" Grid.Column="0" VerticalOptions="Center" HeightRequest="1"/>
+                        <StackLayout Grid.Row="2" Grid.Column="0" Orientation="Vertical" VerticalOptions="Fill" Spacing="0" Padding="2" Margin="0">
+                            <Label Text="{Binding Item.Budget, StringFormat='Presupuesto: {0:C}'}" VerticalOptions="Center" HorizontalOptions="Start" FontSize="13"/>
+                            <Label Text="{Binding Item.StartDate, StringFormat='Fecha Inicio: {0}'}" VerticalOptions="Center" HorizontalOptions="Start" FontSize="13"/>
+                            <Label Text="{Binding Item.EndDate, StringFormat='Fecha Fin: {0}'}" VerticalOptions="Center" HorizontalOptions="Start" FontSize="13"/>
+                        </StackLayout>
+
+                    </Grid>
+                </DataTemplate>
+            </chart:SfCartesianChart.Resources>
+
+            <chart:SfCartesianChart.XAxes>
+                <chart:CategoryAxis ShowMajorGridLines="False" x:Name="xAxis" EdgeLabelsDrawingMode="Fit">
+                    
+                </chart:CategoryAxis>
+            </chart:SfCartesianChart.XAxes>
+
+            <chart:SfCartesianChart.YAxes>
+                <chart:NumericalAxis x:Name="yAxis" LabelCreated="yAxis_LabelCreated" Minimum="0" RangePadding="Additional" EdgeLabelsDrawingMode="Fit">
+                    
+                </chart:NumericalAxis>
+            </chart:SfCartesianChart.YAxes>
+
+            <chart:BubbleSeries MinimumRadius="{OnPlatform Default=15,Android=8,iOS=8}"
+                                MaximumRadius="{OnPlatform Default=30,Android=15,iOS=15}"
+                                SizeValuePath="Budget"  Opacity="0.7" EnableAnimation="True"
+                                PaletteBrushes="{Binding ColorModel}"
+                                EnableTooltip="True" TooltipTemplate="{StaticResource tooltiptemplate}" 
+                                ItemsSource="{Binding projects}" ShowDataLabels="False"
+                                XBindingPath="MonthYear" YBindingPath="Budget"/>
+        </chart:SfCartesianChart>
+
+    </VerticalStackLayout>
+</ContentPage>

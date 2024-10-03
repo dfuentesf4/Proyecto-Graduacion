@@ -15,13 +15,14 @@ namespace HFPMapp.ViewModels.Login
     {
         public UserApiClient _userApiClient;
         public UserSessionService _userSessionService;
+        public ICommand ForgotPasswordCommand => new Command(async () => await Shell.Current.GoToAsync("ForgotPassword"));
 
         public LoginViewModel(UserApiClient userApiClient, UserSessionService userSessionService)
         {
             _userApiClient = userApiClient;
             _userSessionService = userSessionService;
             LoginCommand = new LoginCommand(this);
-        }
+    }
 
         private string _username;
         public string Username

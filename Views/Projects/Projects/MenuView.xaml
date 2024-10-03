@@ -1,14 +1,36 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:button="clr-namespace:Syncfusion.Maui.Buttons;assembly=Syncfusion.Maui.Buttons"
              x:Class="HFPMapp.Views.Projects.MenuView"
              Style="{StaticResource ContentPageStyle}"
              Title="MenuView">
     <VerticalStackLayout>
-        <Button Text="Proyectos" Command="{Binding ProjectsCommand}"/>
-        <Button Text="Beneficiarios" Command="{Binding BeneficiariesCommand}"/>
-        <Button Text="Voluntarios" Command="{Binding VolunteersCommand}"/>
-        <Button Text="Reportes" Command="{Binding ReportsCommand}"/>
-        <Button Text="Actividades" Command="{Binding ActivitiesCommand}"/>
+
+        <button:SfButton Text="Proyectos"
+                         Style="{StaticResource SyncfusionButtonStyle}"
+                         ShowIcon="True" ImageSource="project_icon.png"
+                         Command="{Binding ProjectsCommand}"/>
+
+        <button:SfButton Text="Beneficiarios"
+                 Style="{StaticResource SyncfusionButtonStyle}"
+                 ShowIcon="True" ImageSource="deal_icon.png"
+                 Command="{Binding BeneficiariesCommand}"/>
+
+        <button:SfButton Text="Voluntarios"
+                 Style="{StaticResource SyncfusionButtonStyle}"
+                 ShowIcon="True" ImageSource="worker_icon.png"
+                 Command="{Binding VolunteersCommand}"/>
+
+        <button:SfButton Text="Reportes"
+                 Style="{StaticResource SyncfusionButtonStyle}"
+                 ShowIcon="True" ImageSource="note_icon.png"
+                 Command="{Binding ReportsCommand}"/>
+
+        <button:SfButton Text="Actividades"
+                 Style="{StaticResource SyncfusionButtonStyle}"
+                 ShowIcon="True" ImageSource="tasks_icon.png"
+                 Command="{Binding ActivitiesCommand}"/>
+        
     </VerticalStackLayout>
 </ContentPage>

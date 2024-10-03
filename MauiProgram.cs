@@ -12,8 +12,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Serilog;
+using Syncfusion.Licensing;
 using System.Globalization;
 using System.Reflection;
+using Syncfusion.Maui.Core.Hosting;
 
 
 namespace HFPMapp
@@ -35,6 +37,7 @@ namespace HFPMapp
 
             builder
                 .UseMauiApp<App>()
+                .ConfigureSyncfusionCore()
                 .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
@@ -48,9 +51,13 @@ namespace HFPMapp
 
             IServiceCollection services = builder.Services;
 
-            
+
+            //LICENCIA DE SYNCFUSION
+            SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1NDaF5cWWtCf1NpR2JGfV5ycEVHal5UTnVXUiweQnxTdEFjUH1fcHVXQ2RcUUJ2Ww==");
+
             AppSettings appSettings = new AppSettings(config.GetSection("AppSettings"));
             builder.Services.AddSingleton(appSettings);
+
 
             services.AddHFPMServices(
                 new LoggerConfiguration()
@@ -94,7 +101,8 @@ namespace HFPMapp
             //Services required for Login
             services.AddSingleton<LoginViewModel>();
             services.AddSingleton<LoginView>();
-
+            services.AddSingleton<ForgotPasswordViewModel>();
+            services.AddSingleton<ForgotPasswordView>();
 
 
             //Services required for Settings
@@ -240,6 +248,14 @@ namespace HFPMapp
             services.AddSingleton<HFPMapp.Views.Accounting.BankBook.ListView>();
             services.AddSingleton<HFPMapp.ViewModels.Accounting.BankBook.EditViewModel>();
             services.AddSingleton<HFPMapp.Views.Accounting.BankBook.EditView>();
+
+            //Services required for Reports
+            services.AddSingleton<HFPMapp.ViewModels.Reports.MenuViewModel>();
+            services.AddSingleton<HFPMapp.Views.Reports.MenuView>();
+            services.AddSingleton<HFPMapp.ViewModels.Reports.Accounting.AccountingReportsViewModel>();
+            services.AddSingleton<HFPMapp.Views.Reports.Accounting.AccountingReports>();
+            services.AddSingleton<HFPMapp.ViewModels.Reports.Projects.ProjectsViewModel>();
+            services.AddSingleton<HFPMapp.Views.Reports.Projects.ProjectsView>();
 
 
             return services;

@@ -43,11 +43,6 @@
 
                 <CollectionView ItemsSource="{Binding Users}"
                                     x:Name="listView">
-                    <CollectionView.Margin>
-                        <OnPlatform >
-                            <On Platform="WinUI" Value="10,0,10,0" />
-                        </OnPlatform>
-                    </CollectionView.Margin>
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
                     </CollectionView.ItemsLayout>
@@ -64,7 +59,7 @@
                                 </SwipeView.LeftItems>
                                 <SwipeView.RightItems>
                                     <SwipeItems>
-                                        <SwipeItem Text="Eliminar"
+                                        <SwipeItem Text="Desactivar"
                                                        BackgroundColor="#da0000"
                                                        Command="{Binding Source={x:Reference listView}, Path=BindingContext.DeleteCommand}"
                                                        CommandParameter="{Binding}"/>
@@ -124,7 +119,7 @@
                                                             Background="#FF5733"
                                                             Command="{Binding Source={x:Reference listView}, Path=BindingContext.EditCommand}"
                                                             CommandParameter="{Binding}" />
-                                                    <Button Text="Eliminar"
+                                                    <Button Text="Desactivar"
                                                             Background="#da0000"
                                                             Command="{Binding Source={x:Reference listView}, Path=BindingContext.DeleteCommand}"
                                                             CommandParameter="{Binding}" />

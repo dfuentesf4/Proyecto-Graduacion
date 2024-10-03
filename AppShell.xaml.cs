@@ -9,6 +9,8 @@ namespace HFPMapp
         public AppShell()
         {
             InitializeComponent();
+            //Rutas Login
+            Routing.RegisterRoute("ForgotPassword", typeof(Views.Login.ForgotPasswordView));
             //Rutas User
             Routing.RegisterRoute("EditUser", typeof(Views.Users.EditView));
             Routing.RegisterRoute("CreateUser", typeof(Views.Users.CreateView));
@@ -75,6 +77,9 @@ namespace HFPMapp
             Routing.RegisterRoute("ListBankBook", typeof(Views.Accounting.BankBook.ListView));
             Routing.RegisterRoute("CreateBankBook", typeof(Views.Accounting.BankBook.CreateView));
             Routing.RegisterRoute("EditBankBook", typeof(Views.Accounting.BankBook.EditView));
+            //Rutas Reports
+            Routing.RegisterRoute("AccountingReports", typeof(Views.Reports.Accounting.AccountingReports));
+            Routing.RegisterRoute("ProjectsReports", typeof(Views.Reports.Projects.ProjectsView));
 
             BindingContext = this;
 

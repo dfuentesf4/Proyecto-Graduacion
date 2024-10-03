@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    xmlns:button="clr-namespace:Syncfusion.Maui.Buttons;assembly=Syncfusion.Maui.Buttons">
+
+
+    <Style TargetType="button:SfButton" x:Key="SyncfusionButtonStyle">
+        <Setter Property="Background" Value="{StaticResource Primary}" />
+        <Setter Property="Margin" Value="{x:OnPlatform Default=15, Android=10, iOS=10}"/>
+        <Setter Property="FontSize" Value="{OnPlatform Default=30, Android=25, iOS=25}" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="WidthRequest" Value="{OnPlatform Default=350, Android=250, iOS=250}" />
+        <Setter Property="HeightRequest" Value="{OnPlatform Default=100, Android=65, iOS=65}" />
+        <Setter Property="ImageSize" Value="{OnPlatform Default=80, Android=50, iOS=50}" />
+    </Style>
+</ResourceDictionary>

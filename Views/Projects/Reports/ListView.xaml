@@ -47,28 +47,35 @@
 
                 <CollectionView ItemsSource="{Binding Reports}"
                                 x:Name="listView">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+                    </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <SwipeView>
                                 <SwipeView.LeftItems>
                                     <SwipeItems>
                                         <SwipeItem Text="Editar"
-                                                   BackgroundColor="{StaticResource Primary}"
+                                                   BackgroundColor="#FF5733"
                                                    Command="{Binding Source={x:Reference listView}, Path=BindingContext.EditCommand}"
                                                    CommandParameter="{Binding}"/>
                                     </SwipeItems>
                                 </SwipeView.LeftItems>
                                 <SwipeView.RightItems>
                                     <SwipeItems>
-                                        <SwipeItem Text="Eliminar"
-                                                   BackgroundColor="Red"
+                                        <SwipeItem Text="Desactivar"
+                                                   BackgroundColor="#da0000"
                                                    Command="{Binding Source={x:Reference listView}, Path=BindingContext.DeleteCommand}"
                                                    CommandParameter="{Binding}"/>
                                     </SwipeItems>
                                 </SwipeView.RightItems>
                                 <Border Stroke="Gray"
                                         StrokeThickness="1"
-                                        Margin="2">
+                                            Padding="10">
+
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="20" />
+                                    </Border.StrokeShape>
                                     <VerticalStackLayout Background="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"
                                                          Padding="5">
                                         <HorizontalStackLayout>
@@ -100,9 +107,11 @@
                                             <On Platform="WinUI">
                                                 <HorizontalStackLayout>
                                                     <Button Text="Editar"
+                                                            Background="#FF5733"
                                                             Command="{Binding Source={x:Reference listView}, Path=BindingContext.EditCommand}"
                                                             CommandParameter="{Binding}" />
-                                                    <Button Text="Eliminar"
+                                                    <Button Text="Desactivar"
+                                                            Background="#da0000"
                                                             Command="{Binding Source={x:Reference listView}, Path=BindingContext.DeleteCommand}"
                                                             CommandParameter="{Binding}" />
                                                 </HorizontalStackLayout>

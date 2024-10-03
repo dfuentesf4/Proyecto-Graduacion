@@ -21,6 +21,8 @@
                            Color="Blue" 
                            VerticalOptions="Center" 
                            HorizontalOptions="Center"/>
+
+        <Button Text="Olvidaste tu contraseña?" Command="{Binding ForgotPasswordCommand}"/>
     </VerticalStackLayout>
     
 </ContentPage>
