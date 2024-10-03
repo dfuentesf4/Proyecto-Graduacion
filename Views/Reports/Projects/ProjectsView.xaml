@@ -24,12 +24,12 @@
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
 
-                        <Label Grid.Row="0" Grid.Column="0" Text="{Binding Item.Name}" HorizontalOptions="Center" Margin="0,0,0,2" HorizontalTextAlignment="Center"/>
+                        <Label Grid.Row="0" Grid.Column="0" Text="{Binding Item.Name}" HorizontalOptions="Center" Margin="0,0,0,2" HorizontalTextAlignment="Center" TextColor="White"/>
                         <BoxView Grid.Row="1" Grid.Column="0" VerticalOptions="Center" HeightRequest="1"/>
                         <StackLayout Grid.Row="2" Grid.Column="0" Orientation="Vertical" VerticalOptions="Fill" Spacing="0" Padding="2" Margin="0">
-                            <Label Text="{Binding Item.Budget, StringFormat='Presupuesto: {0:C}'}" VerticalOptions="Center" HorizontalOptions="Start" FontSize="13"/>
-                            <Label Text="{Binding Item.StartDate, StringFormat='Fecha Inicio: {0}'}" VerticalOptions="Center" HorizontalOptions="Start" FontSize="13"/>
-                            <Label Text="{Binding Item.EndDate, StringFormat='Fecha Fin: {0}'}" VerticalOptions="Center" HorizontalOptions="Start" FontSize="13"/>
+                            <Label Text="{Binding Item.Budget, StringFormat='Presupuesto: {0:C}'}" VerticalOptions="Center" HorizontalOptions="Start" FontSize="13" TextColor="White"/>
+                            <Label Text="{Binding Item.StartDate, StringFormat='Fecha Inicio: {0}'}" VerticalOptions="Center" HorizontalOptions="Start" FontSize="13" TextColor="White"/>
+                            <Label Text="{Binding Item.EndDate, StringFormat='Fecha Fin: {0}'}" VerticalOptions="Center" HorizontalOptions="Start" FontSize="13" TextColor="White"/>
                         </StackLayout>
 
                     </Grid>

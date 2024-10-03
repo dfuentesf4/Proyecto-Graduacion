@@ -142,7 +142,7 @@
                 <chart:SfCartesianChart.Series>
                     <chart:LineSeries Label="Transferencias US" EnableTooltip="True" StrokeWidth="1" ItemsSource="{Binding transfersUsPerYearList}" XBindingPath="Year" YBindingPath="Amount" ShowMarkers="True" LegendIcon="SeriesType">
                         <chart:LineSeries.MarkerSettings>
-                            <chart:ChartMarkerSettings  Width="8" Height="8"
+                            <chart:ChartMarkerSettings  Width="12" Height="12"
                                                         Fill="Orange"
                                                         Stroke="Blue"/>
                         </chart:LineSeries.MarkerSettings>

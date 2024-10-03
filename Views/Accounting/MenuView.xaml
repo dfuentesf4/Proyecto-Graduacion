@@ -1,19 +1,76 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:button="clr-namespace:Syncfusion.Maui.Buttons;assembly=Syncfusion.Maui.Buttons"
              x:Class="HFPMapp.Views.Accounting.MenuView"
              Style="{StaticResource ContentPageStyle}"
              Title="Contabilidad">
-    <VerticalStackLayout>
-        <Button Text="Gastos" Command="{Binding ExpensesDetailCommand}" />
-        <Button Text="Ingresos" Command="{Binding RevenuesDetailCommand}" />
-        <Button Text="Resumenes" Command="{Binding SummaryCommand}" />
-        <Button Text="Caja Chica" Command="{Binding PettyCashSummaryCommand}" />
-        <Button Text="Transferencias de US" Command="{Binding TransfersFromUS}" />
-        <Button Text="Resumen de transferencias" Command="{Binding TransfersSummaryCommand}" />
-        <Button Text="Bancos" Command="{Binding BankCommand}" />
-        <Button Text="Folder de Banco" Command="{Binding FolderBankCommand}" />
-        <Button Text="Resumen Bancario" Command="{Binding BankSummaryCommand}" />
-        <Button Text="Libros Bancarios" Command="{Binding BankBookCommand}" />
-    </VerticalStackLayout>
+    
+    <ScrollView>
+        <VerticalStackLayout>
+
+            <button:SfButton Text="Gastos"
+                     Style="{StaticResource SyncfusionButtonStyle}"
+                     ShowIcon="True" ImageSource="transfer_icon.png"
+                     Command="{Binding ExpensesDetailCommand}"/>
+
+            <button:SfButton Text="Ingresos"
+                     Style="{StaticResource SyncfusionButtonStyle}"
+                     ShowIcon="True" ImageSource="transfer_icon.png"
+                     Command="{Binding RevenuesDetailCommand}"/>
+
+            <button:SfButton Text="Resumenes"
+                     Style="{StaticResource SyncfusionButtonStyle}"
+                     ShowIcon="True" ImageSource="resume_icon.png"
+                     Command="{Binding SummaryCommand}"/>
+
+            <button:SfButton Text="Caja Chica"
+                     Style="{StaticResource SyncfusionButtonStyle}"
+                     ShowIcon="True" ImageSource="petty_cash_icon.png"
+                     Command="{Binding PettyCashSummaryCommand}"/>
+
+            <button:SfButton Text="Transferencias de US"
+                             FontSize="{OnPlatform Default=25, Android=20, iOS=20}"
+                     Style="{StaticResource SyncfusionButtonStyle}"
+                     ShowIcon="True" ImageSource="transfer_icon.png"
+                     Command="{Binding TransfersFromUS}"/>
+
+            <button:SfButton
+                     Style="{StaticResource SyncfusionButtonStyle}"
+                     ShowIcon="True" ImageSource="resume_icon.png"
+                     Command="{Binding TransfersSummaryCommand}">
+                <Label Text="Resumen de Transferencias"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="{OnPlatform Default=30, Android=25, iOS=25}" VerticalOptions="Center"
+                       HorizontalOptions="End" Margin="{OnPlatform Default='0,0,20,0', Android='0,0,10,0', iOS='0,0,10,0'}"/>
+            </button:SfButton>
+
+            <button:SfButton Text="Bancos"
+                     Style="{StaticResource SyncfusionButtonStyle}"
+                     ShowIcon="True" ImageSource="bank_icon.png"
+                     Command="{Binding BankCommand}"/>
+
+            <button:SfButton Text="Folder de Banco"
+                             FontSize="{OnPlatform Default=28, Android=22, iOS=22}"
+                     Style="{StaticResource SyncfusionButtonStyle}"
+                     ShowIcon="True" ImageSource="folder_icon.png"
+                     Command="{Binding FolderBankCommand}"/>
+
+            <button:SfButton Text="Resumen Bancario"
+                             FontSize="{OnPlatform Default=28, Android=20, iOS=20}"
+                     Style="{StaticResource SyncfusionButtonStyle}"
+                     ShowIcon="True" ImageSource="resume_icon.png"
+                     Command="{Binding BankSummaryCommand}"/>
+
+
+            <button:SfButton Text="Libros Bancarios"
+                             FontSize="{OnPlatform Default=28, Android=22, iOS=22}"
+                     Style="{StaticResource SyncfusionButtonStyle}"
+                     ShowIcon="True" ImageSource="book_icon.png"
+                     Command="{Binding BankBookCommand}"/>
+
+        
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

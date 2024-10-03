@@ -10,7 +10,6 @@ using HFPMapp.Views.Settings;
 using HFPMapp.Views.Users;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Serilog;
 using Syncfusion.Licensing;
 using System.Globalization;
@@ -38,7 +37,6 @@ namespace HFPMapp
             builder
                 .UseMauiApp<App>()
                 .ConfigureSyncfusionCore()
-                .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

@@ -1,13 +1,37 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:button="clr-namespace:Syncfusion.Maui.Buttons;assembly=Syncfusion.Maui.Buttons"
              x:Class="HFPMapp.Views.Reports.MenuView"
              Style="{StaticResource ContentPageStyle}"
              Title="Reporteria">
     <VerticalStackLayout>
-        <Button Text="Graficos de Contabilidad" 
-                Command="{Binding AccountingCommand}"/>
-        <Button Text="Graficos de Proyectos" 
-        Command="{Binding ProjectsCommand}"/>
+
+        <button:SfButton 
+                         Style="{StaticResource SyncfusionButtonStyle}"
+                         ShowIcon="True" ImageSource="chart_icon.png"
+                         Command="{Binding AccountingCommand}">
+            <Label Text="Graficos de Contabilidad"
+                   TextColor="White"
+                   FontAttributes="Bold"
+                   FontSize="{OnPlatform Default=30, Android=25, iOS=25}" VerticalOptions="Center"
+                   HorizontalOptions="End" Margin="{OnPlatform Default='0,0,20,0', Android='0,0,10,0', iOS='0,0,10,0'}"/>
+        </button:SfButton>
+
+        <button:SfButton 
+                         Style="{StaticResource SyncfusionButtonStyle}"
+                         ShowIcon="True" ImageSource="chart_icon.png"
+                         Command="{Binding ProjectsCommand}">
+            <Label Text="Graficos de"
+                   TextColor="White"
+                   FontAttributes="Bold"
+                   FontSize="{OnPlatform Default=30, Android=25, iOS=25}" VerticalOptions="Center"
+                   HorizontalOptions="End" Margin="{OnPlatform Default='0,0,20,0', Android='0,0,10,0', iOS='0,0,10,0'}"/>
+            <Label Text="Proyectos"
+                   TextColor="White"
+                   FontAttributes="Bold"
+                   FontSize="{OnPlatform Default=30, Android=25, iOS=25}" VerticalOptions="Center"
+                   HorizontalOptions="End" Margin="{OnPlatform Default='0,0,20,0', Android='0,0,10,0', iOS='0,0,10,0'}"/>
+        </button:SfButton>
     </VerticalStackLayout>
 </ContentPage>

@@ -69,15 +69,22 @@
 	  <None Remove="appsettings.json" />
 	  <None Remove="Resources\AppIcon\logoicon.png" />
 	  <None Remove="Resources\Images\accounting_icon.svg" />
+	  <None Remove="Resources\Images\bank_icon.svg" />
+	  <None Remove="Resources\Images\book_icon.svg" />
 	  <None Remove="Resources\Images\chart_icon.svg" />
 	  <None Remove="Resources\Images\deal_icon.svg" />
+	  <None Remove="Resources\Images\expense_icon.svg" />
+	  <None Remove="Resources\Images\folder_icon.svg" />
 	  <None Remove="Resources\Images\home_icon.svg" />
 	  <None Remove="Resources\Images\logo.png" />
 	  <None Remove="Resources\Images\logout_icon.svg" />
 	  <None Remove="Resources\Images\note_icon.svg" />
+	  <None Remove="Resources\Images\petty_cash_icon.svg" />
 	  <None Remove="Resources\Images\project_icon.svg" />
+	  <None Remove="Resources\Images\resume_icon.svg" />
 	  <None Remove="Resources\Images\settings_icon.svg" />
 	  <None Remove="Resources\Images\tasks_icon.svg" />
+	  <None Remove="Resources\Images\transfer_icon.svg" />
 	  <None Remove="Resources\Images\user_icon.svg" />
 	  <None Remove="Resources\Images\web_icon.svg" />
 	  <None Remove="Resources\Images\worker_icon.svg" />
@@ -85,7 +92,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Include="appsettings.json" />
+	  <EmbeddedResource Include="appsettings.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </EmbeddedResource>
 	</ItemGroup>
 
 	<ItemGroup>
