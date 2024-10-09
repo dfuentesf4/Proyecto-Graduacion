@@ -35,7 +35,7 @@
 
 
 
-    <FlyoutItem Title="Usuarios" FlyoutIcon="user_icon.png">
+    <FlyoutItem Title="Usuarios" FlyoutIcon="user_icon.png" x:Name="ListUser">
         
         <ShellContent Title="Listar"
                         Route="ListUser" 
@@ -45,19 +45,19 @@
 
 
 
-    <FlyoutItem Title="Donadores" FlyoutIcon="user_icon.png">
+    <FlyoutItem Title="Donadores" FlyoutIcon="user_icon.png" x:Name="ListDonor">
         <ShellContent Route="ListDonor" ContentTemplate="{DataTemplate donorViews:ListView}" />
     </FlyoutItem>
 
-    <FlyoutItem Title="Proyectos" FlyoutIcon="project_icon.png">
+    <FlyoutItem Title="Proyectos" FlyoutIcon="project_icon.png" x:Name="Projects">
         <ShellContent Route="Projects" ContentTemplate="{DataTemplate projectsViews:MenuView}"/>
     </FlyoutItem>
 
-    <FlyoutItem Title="Contabilidad" FlyoutIcon="accounting_icon.png">
+    <FlyoutItem Title="Contabilidad" FlyoutIcon="accounting_icon.png" x:Name="Accounting">
         <ShellContent Route="Accounting" ContentTemplate="{DataTemplate accountingViews:MenuView}" />
     </FlyoutItem>
 
-    <FlyoutItem Title="Reporteria" FlyoutIcon="chart_icon.png">
+    <FlyoutItem Title="Reportes" FlyoutIcon="chart_icon.png" x:Name="Reports">
         <ShellContent Route="Reports" ContentTemplate="{DataTemplate reports:MenuView}" />
     </FlyoutItem>
 

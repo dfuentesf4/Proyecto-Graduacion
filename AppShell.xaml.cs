@@ -1,4 +1,5 @@
-﻿using HFPMapp.Services;
+﻿using HFPMapp.Models;
+using HFPMapp.Services;
 using System.Windows.Input;
 
 namespace HFPMapp
@@ -6,9 +7,15 @@ namespace HFPMapp
     public partial class AppShell : Shell
     {
 
-        public AppShell()
+        
+
+        public AppShell( )
         {
+
             InitializeComponent();
+
+            UserSessionService.AppShell = this;
+
             //Rutas Login
             Routing.RegisterRoute("ForgotPassword", typeof(Views.Login.ForgotPasswordView));
             //Rutas User
@@ -100,5 +107,28 @@ namespace HFPMapp
 
             
         }
+
+        public void ApplyUserPrivileges()
+        {
+            if(UserSessionService.CurrentUser == null)
+            {
+                return;
+            }
+
+            Privilege privilege = UserSessionService.CurrentUser.Privileges.FirstOrDefault();
+
+            var listUserItem = this.FindByName<FlyoutItem>("ListUser");
+            var listDonorItem = this.FindByName<FlyoutItem>("ListDonor");
+            var projectsItem = this.FindByName<FlyoutItem>("Projects");
+            var accountingItem = this.FindByName<FlyoutItem>("Accounting");
+            var reportsItem = this.FindByName<FlyoutItem>("Reports");
+
+            listUserItem.IsVisible = privilege.UsersManager;
+            listDonorItem.IsVisible = privilege.DonorManager.Value;
+            projectsItem.IsVisible = privilege.ProjectManager.Value;
+            accountingItem.IsVisible = privilege.AccountingManager.Value;
+            reportsItem.IsVisible = privilege.AccountingManager.Value && privilege.ProjectManager.Value;
+        }
+
     }
 }

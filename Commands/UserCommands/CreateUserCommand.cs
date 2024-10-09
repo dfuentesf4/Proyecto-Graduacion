@@ -26,10 +26,41 @@ namespace HFPMapp.Commands.UserCommands
 
             if (!isModelValid) return;
 
-            bool isCreated = await _viewModel.UserApiClient.CreateUserAsync(_viewModel.user);
+            int isCreated = await _viewModel.UserApiClient.CreateUserAsync(_viewModel.user);
 
-            if (isCreated)
+            if (isCreated > 0)
             {
+                Privilege privilege = new Privilege() 
+                { 
+                    UserId = isCreated,
+                    ProjectManager = false,
+                    DonorManager = false,
+                    AccountingManager = false,
+                    UsersManager = false
+
+                };
+                if (_viewModel.user.JobPosition == "Gerente General")
+                {
+                    privilege.ProjectManager = true;
+                    privilege.DonorManager = true;
+                    privilege.AccountingManager = true;
+                    privilege.UsersManager = true;
+                }
+                else if(_viewModel.user.JobPosition == "Lider de Proyectos")
+                {
+                    privilege.ProjectManager = true;
+                }
+                else if (_viewModel.user.JobPosition == "Relaciones Publicas")
+                {
+                    privilege.DonorManager = true;
+                }
+                else if (_viewModel.user.JobPosition == "Contador")
+                {
+                    privilege.AccountingManager = true;
+                }
+
+                bool isPrivilegeCreated = await _viewModel.PrivilegeApiClient.CreatePrivilegeAsync(privilege);
+
                 ThrowMessage.ShowSuccessMessage("Usuario Creado con exito");
                 await Shell.Current.GoToAsync("//ListUser");
                 _viewModel.ClearFields();

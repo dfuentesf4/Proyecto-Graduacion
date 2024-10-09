@@ -4,7 +4,7 @@
              xmlns:button="clr-namespace:Syncfusion.Maui.Buttons;assembly=Syncfusion.Maui.Buttons"
              x:Class="HFPMapp.Views.Reports.MenuView"
              Style="{StaticResource ContentPageStyle}"
-             Title="Reporteria">
+             Title="Reportes">
     <VerticalStackLayout>
 
         <button:SfButton 
@@ -13,25 +13,30 @@
                          Command="{Binding AccountingCommand}">
             <Label Text="Graficos de Contabilidad"
                    TextColor="White"
-                   FontAttributes="Bold"
-                   FontSize="{OnPlatform Default=30, Android=25, iOS=25}" VerticalOptions="Center"
+                   FontAttributes="Bold" HorizontalTextAlignment="End"
+                   FontSize="{OnPlatform Default=30, Android=22, iOS=22}" VerticalOptions="Center"
                    HorizontalOptions="End" Margin="{OnPlatform Default='0,0,20,0', Android='0,0,10,0', iOS='0,0,10,0'}"/>
         </button:SfButton>
 
+        
+        
         <button:SfButton 
                          Style="{StaticResource SyncfusionButtonStyle}"
                          ShowIcon="True" ImageSource="chart_icon.png"
                          Command="{Binding ProjectsCommand}">
-            <Label Text="Graficos de"
-                   TextColor="White"
-                   FontAttributes="Bold"
-                   FontSize="{OnPlatform Default=30, Android=25, iOS=25}" VerticalOptions="Center"
-                   HorizontalOptions="End" Margin="{OnPlatform Default='0,0,20,0', Android='0,0,10,0', iOS='0,0,10,0'}"/>
-            <Label Text="Proyectos"
-                   TextColor="White"
-                   FontAttributes="Bold"
-                   FontSize="{OnPlatform Default=30, Android=25, iOS=25}" VerticalOptions="Center"
-                   HorizontalOptions="End" Margin="{OnPlatform Default='0,0,20,0', Android='0,0,10,0', iOS='0,0,10,0'}"/>
+            <VerticalStackLayout VerticalOptions="Center">
+                
+                <Label Text="Graficos de"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="{OnPlatform Default=30, Android=22, iOS=22}" VerticalOptions="Center"
+                       HorizontalOptions="End" Margin="{OnPlatform Default='0,0,20,0', Android='0,0,10,0', iOS='0,0,10,0'}"/>
+                <Label Text="Proyectos"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="{OnPlatform Default=30, Android=22, iOS=22}" VerticalOptions="Center"
+                       HorizontalOptions="End" Margin="{OnPlatform Default='0,0,20,0', Android='0,0,10,0', iOS='0,0,10,0'}"/>
+            </VerticalStackLayout>
         </button:SfButton>
     </VerticalStackLayout>
 </ContentPage>

@@ -21,6 +21,8 @@ namespace HFPMapp.Models
 
         public bool? IsActive { get; set; }
 
+        public bool UsersManager { get; set; }
+
         [JsonIgnore]
         public virtual User? User { get; set; }
     }

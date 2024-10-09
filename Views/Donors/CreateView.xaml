@@ -16,7 +16,7 @@
     <ScrollView>
         <VerticalStackLayout Padding="20" >
 
-            <Label Text="Crear Usuario" 
+            <Label Text="Crear Donador" 
                FontSize="24" 
                HorizontalOptions="Center" 
                VerticalOptions="Start" 

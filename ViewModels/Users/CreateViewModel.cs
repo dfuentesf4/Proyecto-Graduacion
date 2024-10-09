@@ -13,14 +13,23 @@ namespace HFPMapp.ViewModels.Users
 {
     public class CreateViewModel : BaseViewModel
     {
-        public CreateViewModel(UserApiClient userApiClient)
+        public CreateViewModel(UserApiClient userApiClient, PrivilegeApiClient privilegeApiClient)
         {
             UserApiClient = userApiClient;
+            PrivilegeApiClient = privilegeApiClient;
             CreateUserCommand = new CreateUserCommand(this);
             user = new();
+            ListaPosicion = new List<string>
+            {
+                "Gerente General",
+                "Lider de Proyectos",
+                "Relaciones Publicas",
+                "Contador",
+            };
         }
 
         public UserApiClient UserApiClient { get; set; }
+        public PrivilegeApiClient PrivilegeApiClient { get; set; }
 
         private string? _name;
         private string? _lastname;
@@ -37,6 +46,20 @@ namespace HFPMapp.ViewModels.Users
         private bool _isActive = true;
         public User user;
         public ICommand CreateUserCommand { get; }
+
+        private List<string> _listaPosicion;
+        public List<string> ListaPosicion
+        {
+            get
+            {
+                return _listaPosicion;
+            }
+            set
+            {
+                _listaPosicion = value;
+                OnPropertyChanged(nameof(ListaPosicion));
+            }
+        }
 
         public string? Name
         {

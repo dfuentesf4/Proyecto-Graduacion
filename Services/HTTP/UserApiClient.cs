@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace HFPMapp.Services.HTTP
@@ -158,7 +159,7 @@ namespace HFPMapp.Services.HTTP
             }
         }
 
-        public async Task<bool> CreateUserAsync(User newUser)
+        public async Task<int> CreateUserAsync(User newUser)
         {
             try
             {
@@ -181,18 +182,37 @@ namespace HFPMapp.Services.HTTP
 
                 if (response.IsSuccessStatusCode)
                 {
-                    return true;
+                    var responseBytes = await response.Content.ReadAsByteArrayAsync();
+                    var jsonString = Encoding.UTF8.GetString(responseBytes);
+
+                    var options = new JsonSerializerOptions
+                    {
+                        PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                        PropertyNameCaseInsensitive = true
+                    };
+
+                    // Deserializar la respuesta en un objeto EncryptedResponse
+                    EncryptedResponse encryptedResponse = JsonSerializer.Deserialize<EncryptedResponse>(jsonString, options);
+
+                    // Desencriptar la respuesta
+                    string decryptedResponse = EncryptionHelper.Decrypt(encryptedResponse.EncryptedData);
+
+                    // Deserializar el usuario de la respuesta desencriptada
+                    User responseUser = JsonSerializer.Deserialize<User>(decryptedResponse);
+
+                    // Retornar el ID del usuario creado
+                    return responseUser.Id;
                 }
                 else
                 {
-                    return false;
+                    return 0;
                 }
             }
             catch (Exception ex)
             {
                 // Manejar excepciones
                 Console.WriteLine("User insertion failed: " + ex.Message);
-                return false;
+                return 0;
             }
         }
 
@@ -216,7 +236,8 @@ namespace HFPMapp.Services.HTTP
                     var options = new JsonSerializerOptions
                     {
                         PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-                        PropertyNameCaseInsensitive = true
+                        PropertyNameCaseInsensitive = true,
+                        ReferenceHandler = ReferenceHandler.IgnoreCycles
                     };
 
                     // Deserializar la respuesta en un objeto EncryptedResponse
@@ -226,7 +247,7 @@ namespace HFPMapp.Services.HTTP
                     string decryptedResponse = EncryptionHelper.Decrypt(encryptedResponse.EncryptedData);
 
                     // Deserializar la lista de usuarios
-                    List<User> users = JsonSerializer.Deserialize<List<User>>(decryptedResponse);
+                    List<User> users = JsonSerializer.Deserialize<List<User>>(decryptedResponse, options);
                     return users;
                 }
                 else

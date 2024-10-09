@@ -9,7 +9,19 @@ namespace HFPMapp.Services
 {
     public class UserSessionService
     {
-        public static User? CurrentUser { get; set; }
+        private static User? _currentUser;
+
+        public static User? CurrentUser
+        {
+            get => _currentUser;
+            set
+            {
+                _currentUser = value;
+                OnCurrentUserChanged();
+            }
+        }
+
+        public static AppShell AppShell { get; set; }
 
         public bool IsUserLoggedIn => CurrentUser != null;
 
@@ -18,6 +30,9 @@ namespace HFPMapp.Services
             CurrentUser = null;
         }
 
-       
+        private static void OnCurrentUserChanged()
+        {
+            AppShell.ApplyUserPrivileges();
+        }
     }
 }

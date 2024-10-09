@@ -95,6 +95,7 @@ namespace HFPMapp
             services.AddSingleton<FolderBankApiClient>();
             services.AddSingleton<BankSummaryApiClient>();
             services.AddSingleton<BankBookApiClient>();
+            services.AddSingleton<PrivilegeApiClient>();
 
             //Services required for Login
             services.AddSingleton<LoginViewModel>();

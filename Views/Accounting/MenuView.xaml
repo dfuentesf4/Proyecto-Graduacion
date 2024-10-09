@@ -30,7 +30,7 @@
                      Command="{Binding PettyCashSummaryCommand}"/>
 
             <button:SfButton Text="Transferencias de US"
-                             FontSize="{OnPlatform Default=25, Android=20, iOS=20}"
+                             FontSize="{OnPlatform Default=25, Android=17, iOS=17}"
                      Style="{StaticResource SyncfusionButtonStyle}"
                      ShowIcon="True" ImageSource="transfer_icon.png"
                      Command="{Binding TransfersFromUS}"/>
@@ -42,8 +42,8 @@
                 <Label Text="Resumen de Transferencias"
                        TextColor="White"
                        FontAttributes="Bold"
-                       FontSize="{OnPlatform Default=30, Android=25, iOS=25}" VerticalOptions="Center"
-                       HorizontalOptions="End" Margin="{OnPlatform Default='0,0,20,0', Android='0,0,10,0', iOS='0,0,10,0'}"/>
+                       FontSize="{OnPlatform Default=30, Android=18, iOS=18}" VerticalOptions="Center" HorizontalTextAlignment="End"
+                       HorizontalOptions="End" Margin="{OnPlatform Default='0,0,20,0', Android='0,0,20,0', iOS='0,0,20,0'}"/>
             </button:SfButton>
 
             <button:SfButton Text="Bancos"
